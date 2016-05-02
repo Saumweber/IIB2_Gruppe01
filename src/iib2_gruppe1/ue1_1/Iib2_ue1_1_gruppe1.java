@@ -1,4 +1,4 @@
-package iib2_gruppe1;
+package iib2_gruppe1.ue1_1;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Florian Saumweber: 2354534
  * @author Benjamin Krauß: xxxxxxx
  */
-public class Iib2_gruppe1 {
+public class Iib2_ue1_1_gruppe1 {
 
     /**
      * @desc Ein Konsolenprogramm, welches Kunden, Aufträge und Adressen in
