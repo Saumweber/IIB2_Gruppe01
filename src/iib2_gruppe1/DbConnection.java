@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  *
  * @author Florian Saumweber: 2354534
- * @author Benjamin Krauß: xxxxxxx
+ * @author Benjamin Krauß: 2388173
  */
 public class DbConnection {
 
