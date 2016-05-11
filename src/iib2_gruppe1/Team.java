@@ -3,7 +3,7 @@ package iib2_gruppe1;
 /**
  *
  * @author Florian Saumweber: 2354534
- * @author Benjamin Krauß: xxxxxxx
+ * @author Benjamin Krauß: 2388173
  */
 public class Team {
     /**
@@ -13,6 +13,6 @@ public class Team {
     public static void main(String[] args) {
         System.out.println("Teammmitglieder:");
         System.out.println("- Florian Saumweber: 2354534");
-        System.out.println("- Benjamin Krauß: XXXXXXXX");
+        System.out.println("- Benjamin Krauß: 2388173");
     }
 }

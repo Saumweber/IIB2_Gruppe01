@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  *
  * @author Florian Saumweber: 2354534
- * @author Benjamin Krauß: xxxxxxx
+ * @author Benjamin Krauß: 2388173
  */
 public class Iib2_ue1_1_gruppe1 {
 
