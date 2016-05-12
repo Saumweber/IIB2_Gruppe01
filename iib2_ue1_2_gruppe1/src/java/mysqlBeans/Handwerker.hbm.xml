@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mysqlBeans.Handwerker" table="handwerker" catalog="iib2_ue1_2_gruppe1" optimistic-lock="version">
+        <id name="hawEmail" type="string">
+            <column name="haw_email" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="adresse" class="mysqlBeans.Adresse" fetch="select">
+            <column name="haw_adr_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beruf" class="mysqlBeans.Beruf" fetch="select">
+            <column name="haw_ber_id" not-null="true" />
+        </many-to-one>
+        <property name="hawVorname" type="string">
+            <column name="haw_vorname" length="45" />
+        </property>
+        <property name="hawNachname" type="string">
+            <column name="haw_nachname" length="45" />
+        </property>
+        <set name="auftrags" table="auftrag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="auf_haw_email" length="50" not-null="true" />
+            </key>
+            <one-to-many class="mysqlBeans.Auftrag" />
+        </set>
+    </class>
+</hibernate-mapping>

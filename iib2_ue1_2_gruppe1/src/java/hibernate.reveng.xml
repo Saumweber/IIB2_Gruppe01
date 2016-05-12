@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="iib2_ue1_2_gruppe1"/>
+  <table-filter match-name="auftrag"/>
+  <table-filter match-name="beruf"/>
+  <table-filter match-name="multimedia"/>
+  <table-filter match-name="adresse"/>
+  <table-filter match-name="handwerker"/>
+  <table-filter match-name="gutachter"/>
+  <table-filter match-name="gebaeude"/>
+  <table-filter match-name="schadensart"/>
+  <table-filter match-name="schadenslage"/>
+  <table-filter match-name="schaden"/>
+  <table-filter match-name="eigentuemer"/>
+</hibernate-reverse-engineering>

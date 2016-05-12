@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mysqlBeans.Gebaeude" table="gebaeude" catalog="iib2_ue1_2_gruppe1" optimistic-lock="version">
+        <id name="gbdId" type="java.lang.Integer">
+            <column name="gbd_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="adresse" class="mysqlBeans.Adresse" fetch="select">
+            <column name="gbd_adr_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="eigentuemer" class="mysqlBeans.Eigentuemer" fetch="select">
+            <column name="gbd_eig_email" length="50" not-null="true" />
+        </many-to-one>
+        <property name="gbdName" type="string">
+            <column name="gbd_name" length="45" />
+        </property>
+        <set name="schadenslages" table="schadenslage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sdl_gbd_id" not-null="true" />
+            </key>
+            <one-to-many class="mysqlBeans.Schadenslage" />
+        </set>
+    </class>
+</hibernate-mapping>
