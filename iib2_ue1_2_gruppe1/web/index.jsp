@@ -13,8 +13,7 @@ and open the template in the editor.
 <html>
     <head>
         <title>iib2_ue1_2_gruppe1</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <jsp:include page="./standardMetadata.jsp" />
     </head>
     <body>
         <jsp:include page="./menueHeader.jsp" />

@@ -5,16 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iib2_ue1_2_gruppe1</title>
-    </head>
-    <body>
-        <p>Navigationsleiste</p>
-        <p>Breadcrumb Navigation</p>
-        <p><a href="./loginprocess.jsp?logout=1" title="Logout">Logout</a></p>
-        <hr />
-    </body>
-</html>
+<p>Navigationsleiste<br />
+    Breadcrumb Navigation<br/>
+    <% if (session.getAttribute("loginEmail") != null) {
+            out.println("<a href=\"./loginprocess.jsp?logout=1\" title=\"Logout\">Logout</a>");
+        } else {
+            out.println("<a href=\"./index.html\" title=\"Anmelden\">Anmelden</a>");
+        }
+    %>
+</p>
+<hr />
