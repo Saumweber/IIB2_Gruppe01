@@ -1,5 +1,5 @@
-package mysqlBean;
-// Generated 12.05.2016 22:04:38 by Hibernate Tools 4.3.1
+package bean;
+// Generated 15.05.2016 11:05:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,22 +16,25 @@ public class Eigentuemer  implements java.io.Serializable {
      private String eigVorname;
      private String eigNachname;
      private Boolean eigKunde;
+     private String eigPasswort;
      private Set gebaeudes = new HashSet(0);
 
     public Eigentuemer() {
     }
 
 	
-    public Eigentuemer(String eigEmail, Adresse adresse) {
+    public Eigentuemer(String eigEmail, Adresse adresse, String eigPasswort) {
         this.eigEmail = eigEmail;
         this.adresse = adresse;
+        this.eigPasswort = eigPasswort;
     }
-    public Eigentuemer(String eigEmail, Adresse adresse, String eigVorname, String eigNachname, Boolean eigKunde, Set gebaeudes) {
+    public Eigentuemer(String eigEmail, Adresse adresse, String eigVorname, String eigNachname, Boolean eigKunde, String eigPasswort, Set gebaeudes) {
        this.eigEmail = eigEmail;
        this.adresse = adresse;
        this.eigVorname = eigVorname;
        this.eigNachname = eigNachname;
        this.eigKunde = eigKunde;
+       this.eigPasswort = eigPasswort;
        this.gebaeudes = gebaeudes;
     }
    
@@ -69,6 +72,13 @@ public class Eigentuemer  implements java.io.Serializable {
     
     public void setEigKunde(Boolean eigKunde) {
         this.eigKunde = eigKunde;
+    }
+    public String getEigPasswort() {
+        return this.eigPasswort;
+    }
+    
+    public void setEigPasswort(String eigPasswort) {
+        this.eigPasswort = eigPasswort;
     }
     public Set getGebaeudes() {
         return this.gebaeudes;

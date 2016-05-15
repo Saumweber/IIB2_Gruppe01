@@ -1,5 +1,5 @@
-package mysqlBean;
-// Generated 12.05.2016 22:04:38 by Hibernate Tools 4.3.1
+package bean;
+// Generated 15.05.2016 11:05:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,21 +15,24 @@ public class Gutachter  implements java.io.Serializable {
      private Adresse adresse;
      private String gutVorname;
      private String gutNachname;
+     private String gutPasswort;
      private Set schadens = new HashSet(0);
 
     public Gutachter() {
     }
 
 	
-    public Gutachter(String gutEmail, Adresse adresse) {
+    public Gutachter(String gutEmail, Adresse adresse, String gutPasswort) {
         this.gutEmail = gutEmail;
         this.adresse = adresse;
+        this.gutPasswort = gutPasswort;
     }
-    public Gutachter(String gutEmail, Adresse adresse, String gutVorname, String gutNachname, Set schadens) {
+    public Gutachter(String gutEmail, Adresse adresse, String gutVorname, String gutNachname, String gutPasswort, Set schadens) {
        this.gutEmail = gutEmail;
        this.adresse = adresse;
        this.gutVorname = gutVorname;
        this.gutNachname = gutNachname;
+       this.gutPasswort = gutPasswort;
        this.schadens = schadens;
     }
    
@@ -60,6 +63,13 @@ public class Gutachter  implements java.io.Serializable {
     
     public void setGutNachname(String gutNachname) {
         this.gutNachname = gutNachname;
+    }
+    public String getGutPasswort() {
+        return this.gutPasswort;
+    }
+    
+    public void setGutPasswort(String gutPasswort) {
+        this.gutPasswort = gutPasswort;
     }
     public Set getSchadens() {
         return this.schadens;

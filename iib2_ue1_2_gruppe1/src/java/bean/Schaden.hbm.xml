@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<!-- Generated 15.05.2016 11:05:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Schaden" optimistic-lock="version" table="schaden">
+  <class catalog="iib2_ue1_2_gruppe1" name="bean.Schaden" optimistic-lock="version" table="schaden">
     <id name="sdnId" type="java.lang.Integer">
       <column name="sdn_id"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="mysqlBean.Gutachter" fetch="select" name="gutachter">
+    <many-to-one class="bean.Gutachter" fetch="select" name="gutachter">
       <column length="50" name="sdn_gut_email" not-null="true"/>
     </many-to-one>
-    <many-to-one class="mysqlBean.Schadensart" fetch="select" name="schadensart">
+    <many-to-one class="bean.Schadensart" fetch="select" name="schadensart">
       <column name="sdn_sda_id" not-null="true"/>
     </many-to-one>
-    <many-to-one class="mysqlBean.Schadenslage" fetch="select" name="schadenslage">
+    <many-to-one class="bean.Schadenslage" fetch="select" name="schadenslage">
       <column name="sdn_sdl_id" not-null="true"/>
     </many-to-one>
     <property name="sdnStatus" type="string">
@@ -26,13 +26,13 @@
       <key>
         <column name="auf_sdn_id" not-null="true"/>
       </key>
-      <one-to-many class="mysqlBean.Auftrag"/>
+      <one-to-many class="bean.Auftrag"/>
     </set>
     <set fetch="select" inverse="true" lazy="true" name="multimedias" table="multimedia">
       <key>
         <column name="mmd_sdn_id" not-null="true"/>
       </key>
-      <one-to-many class="mysqlBean.Multimedia"/>
+      <one-to-many class="bean.Multimedia"/>
     </set>
   </class>
 </hibernate-mapping>

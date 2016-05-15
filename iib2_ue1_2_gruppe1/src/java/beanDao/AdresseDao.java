@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mysqlBeanDao;
+package beanDao;
 
 import iib2_gruppe1.DbConnection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import mysqlBean.Adresse;
+import bean.Adresse;
 
 /**
  *
@@ -19,7 +19,7 @@ import mysqlBean.Adresse;
  */
 public class AdresseDao extends DbConnection {
 
-    public List<Adresse> sAdresse() {
+    public List<Adresse> select() {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Adresse> returnList = new ArrayList<Adresse>();
@@ -45,7 +45,7 @@ public class AdresseDao extends DbConnection {
         return returnList;
     }
 
-    public List<Adresse> sAdresse(Adresse _beanToUseIdFrom) {
+    public List<Adresse> selectById(Adresse _bean) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Adresse> returnList = new ArrayList<Adresse>();
@@ -53,7 +53,7 @@ public class AdresseDao extends DbConnection {
 
         try {
             preparedStatement = this.connection.prepareStatement(statement);
-            preparedStatement.setInt(1, _beanToUseIdFrom.getAdrId());
+            preparedStatement.setInt(1, _bean.getAdrId());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -72,10 +72,10 @@ public class AdresseDao extends DbConnection {
         return returnList;
     }
 
-    public int iAdresse(Adresse _bean) {
+    public int insert(Adresse _bean) {
         PreparedStatement preparedStatement = null;
         int resultSet = -1;
-        String statement = "insert into adresse (strasse, hausnummer, plz, ort, land) values(?, ?, ?, ?, ?);";
+        String statement = "insert into adresse (adr_strasse, adr_hausnummer, adr_plz, adr_ort, adr_land) values(?, ?, ?, ?, ?);";
 
         try {
             preparedStatement = this.connection.prepareStatement(statement);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<!-- Generated 15.05.2016 11:05:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Gutachter" optimistic-lock="version" table="gutachter">
+  <class catalog="iib2_ue1_2_gruppe1" name="bean.Gutachter" optimistic-lock="version" table="gutachter">
     <id name="gutEmail" type="string">
       <column length="50" name="gut_email"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="mysqlBean.Adresse" fetch="select" name="adresse">
+    <many-to-one class="bean.Adresse" fetch="select" name="adresse">
       <column name="gut_adr_id" not-null="true"/>
     </many-to-one>
     <property name="gutVorname" type="string">
@@ -16,11 +16,14 @@
     <property name="gutNachname" type="string">
       <column length="45" name="gut_nachname"/>
     </property>
+    <property name="gutPasswort" type="string">
+      <column length="256" name="gut_passwort" not-null="true"/>
+    </property>
     <set fetch="select" inverse="true" lazy="true" name="schadens" table="schaden">
       <key>
         <column length="50" name="sdn_gut_email" not-null="true"/>
       </key>
-      <one-to-many class="mysqlBean.Schaden"/>
+      <one-to-many class="bean.Schaden"/>
     </set>
   </class>
 </hibernate-mapping>

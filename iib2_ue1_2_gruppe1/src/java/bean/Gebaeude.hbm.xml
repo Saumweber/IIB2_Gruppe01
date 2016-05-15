@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<!-- Generated 15.05.2016 11:05:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Gebaeude" optimistic-lock="version" table="gebaeude">
+  <class catalog="iib2_ue1_2_gruppe1" name="bean.Gebaeude" optimistic-lock="version" table="gebaeude">
     <id name="gbdId" type="java.lang.Integer">
       <column name="gbd_id"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="mysqlBean.Adresse" fetch="select" name="adresse">
+    <many-to-one class="bean.Adresse" fetch="select" name="adresse">
       <column name="gbd_adr_id" not-null="true"/>
     </many-to-one>
-    <many-to-one class="mysqlBean.Eigentuemer" fetch="select" name="eigentuemer">
+    <many-to-one class="bean.Eigentuemer" fetch="select" name="eigentuemer">
       <column length="50" name="gbd_eig_email" not-null="true"/>
     </many-to-one>
     <property name="gbdName" type="string">
@@ -20,7 +20,7 @@
       <key>
         <column name="sdl_gbd_id" not-null="true"/>
       </key>
-      <one-to-many class="mysqlBean.Schadenslage"/>
+      <one-to-many class="bean.Schadenslage"/>
     </set>
   </class>
 </hibernate-mapping>

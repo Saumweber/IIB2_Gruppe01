@@ -1,5 +1,5 @@
-package mysqlBean;
-// Generated 12.05.2016 22:04:38 by Hibernate Tools 4.3.1
+package bean;
+// Generated 15.05.2016 11:05:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

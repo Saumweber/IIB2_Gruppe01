@@ -1,5 +1,5 @@
-package mysqlBean;
-// Generated 12.05.2016 22:04:38 by Hibernate Tools 4.3.1
+package bean;
+// Generated 15.05.2016 11:05:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,23 +16,26 @@ public class Handwerker  implements java.io.Serializable {
      private Beruf beruf;
      private String hawVorname;
      private String hawNachname;
+     private String hawPasswort;
      private Set auftrags = new HashSet(0);
 
     public Handwerker() {
     }
 
 	
-    public Handwerker(String hawEmail, Adresse adresse, Beruf beruf) {
+    public Handwerker(String hawEmail, Adresse adresse, Beruf beruf, String hawPasswort) {
         this.hawEmail = hawEmail;
         this.adresse = adresse;
         this.beruf = beruf;
+        this.hawPasswort = hawPasswort;
     }
-    public Handwerker(String hawEmail, Adresse adresse, Beruf beruf, String hawVorname, String hawNachname, Set auftrags) {
+    public Handwerker(String hawEmail, Adresse adresse, Beruf beruf, String hawVorname, String hawNachname, String hawPasswort, Set auftrags) {
        this.hawEmail = hawEmail;
        this.adresse = adresse;
        this.beruf = beruf;
        this.hawVorname = hawVorname;
        this.hawNachname = hawNachname;
+       this.hawPasswort = hawPasswort;
        this.auftrags = auftrags;
     }
    
@@ -70,6 +73,13 @@ public class Handwerker  implements java.io.Serializable {
     
     public void setHawNachname(String hawNachname) {
         this.hawNachname = hawNachname;
+    }
+    public String getHawPasswort() {
+        return this.hawPasswort;
+    }
+    
+    public void setHawPasswort(String hawPasswort) {
+        this.hawPasswort = hawPasswort;
     }
     public Set getAuftrags() {
         return this.auftrags;
