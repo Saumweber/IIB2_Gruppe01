@@ -2,6 +2,7 @@ package iib2_gruppe1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -22,7 +23,7 @@ import java.sql.SQLException;
 * und dann jeweils als .jar bzw. als Projekt-jar in die Librarie eines jeden 
 * Projektes hinzuzufügen. Diese Abhängigkeiten untereinander machen jedoch das
 * Nachvollziehen der einzelnen Hausübungen unnötig schwierig.
-*/
+ */
 public class DbConnection {
 
     public static Connection connection;

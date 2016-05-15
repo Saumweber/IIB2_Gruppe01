@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Schadenslage" optimistic-lock="version" table="schadenslage">
+    <id name="sdlId" type="java.lang.Integer">
+      <column name="sdl_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="mysqlBean.Gebaeude" fetch="select" name="gebaeude">
+      <column name="sdl_gbd_id" not-null="true"/>
+    </many-to-one>
+    <property name="sdlStockwerk" type="string">
+      <column length="45" name="sdl_stockwerk"/>
+    </property>
+    <property name="sdlRaum" type="string">
+      <column length="45" name="sdl_raum"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="schadens" table="schaden">
+      <key>
+        <column name="sdn_sdl_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Schaden"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -7,16 +7,16 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/iib2_ue1_2_gruppe1?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">iib2</property>
-    <mapping resource="mysqlBeans/Eigentuemer.hbm.xml"/>
-    <mapping resource="mysqlBeans/Gebaeude.hbm.xml"/>
-    <mapping resource="mysqlBeans/Schadenslage.hbm.xml"/>
-    <mapping resource="mysqlBeans/Beruf.hbm.xml"/>
-    <mapping resource="mysqlBeans/Adresse.hbm.xml"/>
-    <mapping resource="mysqlBeans/Schaden.hbm.xml"/>
-    <mapping resource="mysqlBeans/Schadensart.hbm.xml"/>
-    <mapping resource="mysqlBeans/Gutachter.hbm.xml"/>
-    <mapping resource="mysqlBeans/Multimedia.hbm.xml"/>
-    <mapping resource="mysqlBeans/Handwerker.hbm.xml"/>
-    <mapping resource="mysqlBeans/Auftrag.hbm.xml"/>
+    <mapping resource="mysqlBean/Eigentuemer.hbm.xml"/>
+    <mapping resource="mysqlBean/Gebaeude.hbm.xml"/>
+    <mapping resource="mysqlBean/Schadenslage.hbm.xml"/>
+    <mapping resource="mysqlBean/Beruf.hbm.xml"/>
+    <mapping resource="mysqlBean/Adresse.hbm.xml"/>
+    <mapping resource="mysqlBean/Schaden.hbm.xml"/>
+    <mapping resource="mysqlBean/Schadensart.hbm.xml"/>
+    <mapping resource="mysqlBean/Gutachter.hbm.xml"/>
+    <mapping resource="mysqlBean/Multimedia.hbm.xml"/>
+    <mapping resource="mysqlBean/Handwerker.hbm.xml"/>
+    <mapping resource="mysqlBean/Auftrag.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

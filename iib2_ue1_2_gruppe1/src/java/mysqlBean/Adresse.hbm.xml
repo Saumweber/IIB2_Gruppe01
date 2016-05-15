@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Adresse" optimistic-lock="version" table="adresse">
+    <id name="adrId" type="java.lang.Integer">
+      <column name="adr_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="adrStrasse" type="string">
+      <column length="45" name="adr_strasse"/>
+    </property>
+    <property name="adrHausnummer" type="string">
+      <column length="45" name="adr_hausnummer"/>
+    </property>
+    <property name="adrPlz" type="string">
+      <column length="8" name="adr_plz"/>
+    </property>
+    <property name="adrOrt" type="string">
+      <column length="45" name="adr_ort"/>
+    </property>
+    <property name="adrLand" type="string">
+      <column length="45" name="adr_land"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="handwerkers" table="handwerker">
+      <key>
+        <column name="haw_adr_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Handwerker"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="eigentuemers" table="eigentuemer">
+      <key>
+        <column name="eig_adr_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Eigentuemer"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="gebaeudes" table="gebaeude">
+      <key>
+        <column name="gbd_adr_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Gebaeude"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="gutachters" table="gutachter">
+      <key>
+        <column name="gut_adr_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Gutachter"/>
+    </set>
+  </class>
+</hibernate-mapping>

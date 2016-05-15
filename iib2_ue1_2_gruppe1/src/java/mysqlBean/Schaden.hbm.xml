@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12.05.2016 22:04:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="iib2_ue1_2_gruppe1" name="mysqlBean.Schaden" optimistic-lock="version" table="schaden">
+    <id name="sdnId" type="java.lang.Integer">
+      <column name="sdn_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="mysqlBean.Gutachter" fetch="select" name="gutachter">
+      <column length="50" name="sdn_gut_email" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mysqlBean.Schadensart" fetch="select" name="schadensart">
+      <column name="sdn_sda_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mysqlBean.Schadenslage" fetch="select" name="schadenslage">
+      <column name="sdn_sdl_id" not-null="true"/>
+    </many-to-one>
+    <property name="sdnStatus" type="string">
+      <column length="12" name="sdn_status"/>
+    </property>
+    <property name="sdnUmfang" type="string">
+      <column length="14" name="sdn_umfang"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="auftrags" table="auftrag">
+      <key>
+        <column name="auf_sdn_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Auftrag"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="multimedias" table="multimedia">
+      <key>
+        <column name="mmd_sdn_id" not-null="true"/>
+      </key>
+      <one-to-many class="mysqlBean.Multimedia"/>
+    </set>
+  </class>
+</hibernate-mapping>

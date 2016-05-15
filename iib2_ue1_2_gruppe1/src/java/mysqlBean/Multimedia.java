@@ -1,4 +1,4 @@
-package mysqlBeans;
+package mysqlBean;
 // Generated 12.05.2016 22:04:38 by Hibernate Tools 4.3.1
 
 
