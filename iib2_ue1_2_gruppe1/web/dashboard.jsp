@@ -38,6 +38,7 @@
             <li><a href="./newEntity.jsp?entity=schadenslage" title="Schadenslage anlegen">Schadenslage</a></li>
             <li><a href="./newEntity.jsp?entity=multimedia" title="Multimedia anlegen">Multimedia</a></li>
             <li><a href="./newEntity.jsp?entity=schadensart" title="Schadensart anlegen">Schadensart</a></li>
+            <li><a href="./newEntity.jsp?entity=auftrag" title="Auftrag anlegen">Auftrag</a></li>
         </ul>
         <h1>Einsehen</h1>
         <ul>
@@ -51,19 +52,7 @@
             <li><a href="./seeEntity.jsp?entity=schadenslage" title="Schadenslage(n) einsehen">Schadenslage(n)</a></li>
             <li><a href="./seeEntity.jsp?entity=multimedia" title="Multimedia einsehen">Multimedia</a></li>
             <li><a href="./seeEntity.jsp?entity=schadensart" title="Schadensart(en) einsehen">Schadensart(en)</a></li>
-        </ul>
-        <h1>Bearbeiten</h1>
-        <ul>
-            <li><a href="./modifyEntity.jsp?entity=adresse" title="Adresse bearbeiten">Adresse</a></li>
-            <li><a href="./modifyEntity.jsp?entity=eigentuemer" title="Eigent&uuml;mer bearbeiten">Eigent&uuml;mer</a></li>
-            <li><a href="./modifyEntity.jsp?entity=beruf" title="Beruf bearbeiten">Beruf</a></li>
-            <li><a href="./modifyEntity.jsp?entity=handwerker" title="Handwerker bearbeiten">Handwerker</a></li>
-            <li><a href="./modifyEntity.jsp?entity=gutachter" title="Gutachter bearbeiten">Gutachter</a></li>
-            <li><a href="./modifyEntity.jsp?entity=schaden" title="Schaden bearbeiten">Schaden</a></li>
-            <li><a href="./modifyEntity.jsp?entity=gebaeude" title="Geb&auml;bde bearbeiten">Geb&auml;de</a></li>
-            <li><a href="./modifyEntity.jsp?entity=schadenslage" title="Schadenslage bearbeiten">Schadenslage)</a></li>
-            <li><a href="./modifyEntity.jsp?entity=multimedia" title="Multimedia bearbeiten">Multimedia</a></li>
-            <li><a href="./modifyEntity.jsp?entity=schadensart" title="Schadensart bearbeiten">Schadensart</a></li>
+            <li><a href="./seeEntity.jsp?entity=auftrag" title="Auftrag/ Auftr&auml;ge einsehen">Auftrag/ Auftr&auml;ge</a></li>
         </ul>
     </body>
 </html>

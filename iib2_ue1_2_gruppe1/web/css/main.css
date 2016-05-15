@@ -42,3 +42,7 @@ tr:nth-child(odd) {
 tr:hover {
     background-color: #ccc;
 }
+
+input {
+    margin: 5px 0;
+}

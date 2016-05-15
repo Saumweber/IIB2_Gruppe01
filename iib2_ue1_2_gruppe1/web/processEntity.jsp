@@ -10,7 +10,7 @@
     String comparingString = request.getParameter("entity") != null ? request.getParameter("entity").toLowerCase() : "";
     if (comparingString.equals("adresse")) {
         bean.Adresse element = new bean.Adresse();
-        element.setAdrId(Integer.parseInt((String) session.getAttribute("modifyId")));
+        element.setAdrId(Integer.parseInt(session.getAttribute("modifyId").toString()));
         element.setAdrStrasse(request.getParameter("strasse"));
         element.setAdrHausnummer(request.getParameter("hausnummer"));
         element.setAdrPlz(request.getParameter("plz"));

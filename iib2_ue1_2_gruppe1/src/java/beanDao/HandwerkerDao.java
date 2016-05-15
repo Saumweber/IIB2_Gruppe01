@@ -40,6 +40,7 @@ public class HandwerkerDao extends DbConnection {
                 tmp.setAdrId(resultSet.getInt("haw_adr_id"));
                 handwerker.setAdresse(new AdresseDao().selectById(tmp).get(0));
                 handwerker.setHawPasswort(resultSet.getString("haw_passwort"));
+                returnList.add(handwerker);
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

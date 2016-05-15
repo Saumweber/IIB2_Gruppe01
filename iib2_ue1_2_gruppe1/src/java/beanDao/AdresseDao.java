@@ -90,4 +90,24 @@ public class AdresseDao extends DbConnection {
         }
         return resultSet;
     }
+
+    public int update(Adresse _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "update adresse set adr_strasse = ?, adr_hausnummer = ?, adr_plz = ?, adr_ort = ?, adr_land = ? where adr_id = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getAdrStrasse());
+            preparedStatement.setString(2, _bean.getAdrHausnummer());
+            preparedStatement.setString(3, _bean.getAdrPlz());
+            preparedStatement.setString(4, _bean.getAdrOrt());
+            preparedStatement.setString(5, _bean.getAdrLand());
+            preparedStatement.setInt(6, _bean.getAdrId());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
 }

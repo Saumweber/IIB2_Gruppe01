@@ -41,6 +41,7 @@ public class EigentuemerDao extends DbConnection {
                 tmp.setAdrId(resultSet.getInt("eig_adr_id"));
                 eigentuemer.setAdresse(new AdresseDao().selectById(tmp).get(0));
                 eigentuemer.setEigPasswort(resultSet.getString("eig_passwort"));
+                returnList.add(eigentuemer);
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

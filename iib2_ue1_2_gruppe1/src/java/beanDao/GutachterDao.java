@@ -40,6 +40,7 @@ public class GutachterDao extends DbConnection {
                 tmp.setAdrId(resultSet.getInt("gut_adr_id"));
                 gutachter.setAdresse(new AdresseDao().selectById(tmp).get(0));
                 gutachter.setGutPasswort(resultSet.getString("gut_passwort"));
+                returnList.add(gutachter);
             }
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

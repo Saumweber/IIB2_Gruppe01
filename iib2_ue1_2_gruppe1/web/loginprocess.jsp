@@ -4,7 +4,6 @@
     Author     : Florian
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if (request.getParameter("logout") != null) {
         session.removeAttribute("loginEmail");
@@ -54,7 +53,7 @@
             }
         }
 
-        // Session-abhÃ¤ngig (also angemeldet oder nicht) weiterleiten
+        // Session-abhängig (also angemeldet oder nicht) weiterleiten
         if (session.getAttribute("loginEmail") != null) {
             response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "./dashboard.jsp");

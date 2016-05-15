@@ -5,8 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<p>Navigationsleiste<br />
-    Breadcrumb Navigation<br/>
+<p>
+    <a href="./dashboard.jsp" title="Dashboard">Dashbaord</a> |
     <% if (session.getAttribute("loginEmail") != null) {
             out.println("<a href=\"./loginprocess.jsp?logout=1\" title=\"Logout\">Logout</a>");
         } else {

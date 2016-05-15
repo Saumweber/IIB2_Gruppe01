@@ -25,33 +25,82 @@
                 return;
             }
 
-            String comparingString = request.getParameter("entity").toLowerCase();
-            if (comparingString.equals("adresse")) { %>
-        <form action="./processEnity.jsp" name="form_adresse" method="post">
+            String addOrMod = "";
+            String addedOrModed = "";
+            if (request.getParameter("type") != null
+                    && request.getParameter("type").equals("add")) {
+                addOrMod = "einf&uuml;gen";
+                addedOrModed = "eingef&uuml;gt";
+            } else {
+                addOrMod = "&auml;ndern";
+                addedOrModed = "ge&auml;ndert";
+            }
+            if (session.getAttribute("return") != null) {
+                String entity = request.getParameter("entity");
+                entity = entity.substring(0, 1).toUpperCase() + entity.substring(1);
+                int returnSet = Integer.parseInt(session.getAttribute("return").toString());
+                session.removeAttribute("return");
+                if (returnSet > 0) {
+                    out.print(entity + " wurde erfolgreich " + addedOrModed + ".");
+                } else {
+                    out.print("Es trat ein Fehler auf. " + entity + " wurde nicht " + addedOrModed + ".");
+                }
+            }
+
+            String comparingString = request.getParameter("entity") != null ? request.getParameter("entity").toLowerCase() : "";
+            int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
+            boolean founded = false;
+
+            if (comparingString.equals("adresse")) {
+                bean.Adresse element = new bean.Adresse();
+                element.setAdrId(id);
+                beanDao.AdresseDao elementDao = new beanDao.AdresseDao();
+                if (elementDao.selectById(element).size() > 0) {
+                    element = elementDao.selectById(element).get(0);
+                    founded = true;
+                } else if (request.getParameter("type") != null
+                        && !request.getParameter("type").equals("add")) {
+                    out.println("<p>Die zu bearbeitende Adresse konnte nicht gefunden werden.</p>");
+                }
+        %>
+        <form action="./processEntity.jsp?entity=adresse" name="form_adresse" method="post">
             <div>
                 <label for="strasse">Stra&szlig;e: </label>
-                <input type="text" name="strasse" id="strasse" value="" required="required" placeholder="Stra&szlig;e" />
+                <input type="text" name="strasse" id="strasse" value="<% if (founded) {
+                        out.print(element.getAdrStrasse());
+                    } %>" required="required" placeholder="Stra&szlig;e" />
                 <br />
                 <label for="hausnummer">Hausnummer: </label>
-                <input type="text" name="hausnummer" id="hausnummer" value="" required="required" placeholder="Hausnummer" />
+                <input type="text" name="hausnummer" id="hausnummer" value="<% if (founded) {
+                        out.print(element.getAdrHausnummer());
+                    } %>" required="required" placeholder="Hausnummer" />
                 <br />
                 <label for="plz">PLZ: </label>
-                <input type="text" name="plz" id="plz" value="" required="required" placeholder="PLZ" />
+                <input type="text" name="plz" id="plz" value="<% if (founded) {
+                        out.print(element.getAdrPlz());
+                    } %>" required="required" placeholder="PLZ" />
                 <br />
                 <label for="ort">Ort: </label>
-                <input type="text" name="ort" id="ort" value="" required="required" placeholder="Ort" />
+                <input type="text" name="ort" id="ort" value="<% if (founded) {
+                        out.print(element.getAdrOrt());
+                    } %>" required="required" placeholder="Ort" />
                 <br />
                 <label for="land">Land: </label>
-                <input type="text" name="land" id="land" value="" required="required" placeholder="Land" />
+                <input type="text" name="land" id="land" value="<% if (founded) {
+                        out.print(element.getAdrLand());
+                    }%>" required="required" placeholder="Land" />
                 <br />
-                <input type="submit" name="submit_adresse" id="submit_adresse" value="einf&uuml;gen" />
+                <input type="submit" name="submit_adresse" id="submit_adresse" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_adresse" id="reset_adresse" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
+            if (founded) {
+                session.setAttribute("modifyId", element.getAdrId());
+            }
         } else if (comparingString.equals("eigentuemer")) {
         %>
-        <form action="./processEnity.jsp" name="form_eigentuemer" method="post">
+        <form action="./processEntity.jsp" name="form_eigentuemer" method="post">
             <div>
                 <label for="vorname">Vorname: </label>
                 <input type="text" name="vorname" id="vorname" value="" required="required" placeholder="Vorname" />
@@ -67,14 +116,14 @@
                     <option value="adr_id">hier select-beanDoa pro eigentuemer laufen lassen</option>
                 </select>
                 <br />
-                <input type="submit" name="submit_eigentuemer" id="submit_eigentuemer" value="einf&uuml;gen" />
+                <input type="submit" name="submit_eigentuemer" id="submit_eigentuemer" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_eigentuemer" id="reset_eigentuemer" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("beruf")) {
         %>
-        <form action="./processEnity.jsp" name="form_beruf" method="post">
+        <form action="./processEntity.jsp" name="form_beruf" method="post">
             <div>
                 <label for="name">Name: </label>
                 <input type="text" name="name" id="name" value="" required="required" placeholder="Name" />
@@ -82,14 +131,14 @@
                 <label for="spezialisierung">Spezialisierung </label>
                 <input type="text" name="spezialisierung" id="spezialisierung" value="" required="required" placeholder="Spezialisierung" />
                 <br />
-                <input type="submit" name="submit_beruf" id="submit_beruf" value="einf&uuml;gen" />
+                <input type="submit" name="submit_beruf" id="submit_beruf" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_beruf" id="reset_beruf" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("handwerker")) {
         %>
-        <form action="./processEnity.jsp" name="form_handwerker" method="post">
+        <form action="./processEntity.jsp" name="form_handwerker" method="post">
             <div>
                 <label for="vorname">Vorname: </label>
                 <input type="text" name="vorname" id="vorname" value="" required="required" placeholder="Vorname" />
@@ -105,14 +154,14 @@
                     <option value="adr_id">hier select-beanDoa pro eigentuemer laufen lassen</option>
                 </select>
                 <br />
-                <input type="submit" name="submit_handwerker" id="submit_handwerker" value="einf&uuml;gen" />
+                <input type="submit" name="submit_handwerker" id="submit_handwerker" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_handwerker" id="reset_handwerker" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("gutachter")) {
         %>
-        <form action="./processEnity.jsp" name="form_gutachter" method="post">
+        <form action="./processEntity.jsp" name="form_gutachter" method="post">
             <div>
                 <label for="vorname">Vorname: </label>
                 <input type="text" name="vorname" id="vorname" value="" required="required" placeholder="Vorname" />
@@ -128,14 +177,14 @@
                     <option value="adr_id">hier select-beanDoa pro eigentuemer laufen lassen</option>
                 </select>
                 <br />
-                <input type="submit" name="submit_gutachter" id="submit_gutachter" value="einf&uuml;gen" />
+                <input type="submit" name="submit_gutachter" id="submit_gutachter" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_gutachter" id="reset_gutachter" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("schaden")) {
         %>
-        <form action="./processEnity.jsp" name="form_schaden" method="post">
+        <form action="./processEntity.jsp" name="form_schaden" method="post">
             <div>
                 <label for="status">Status: </label>
                 <select name="status" id="status" value="" required="required">
@@ -162,14 +211,14 @@
                     <option value="">siehe Adresse Eigentuemer</option>
                 </select>
                 <br />
-                <input type="submit" name="submit_schaden" id="submit_schaden" value="einf&uuml;gen" />
+                <input type="submit" name="submit_schaden" id="submit_schaden" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_schaden" id="reset_schaden" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("gebauede")) {
         %>
-        <form action="./processEnity.jsp" name="form_gebaude" method="post">
+        <form action="./processEntity.jsp" name="form_gebaude" method="post">
             <div>
                 <label for="name">Name: </label>
                 <input type="text" name="name" id="name" value="" required="required" placeholder="Name" />
@@ -184,14 +233,14 @@
                     <option value="">siehe Adresse Eigentuemer</option>
                 </select>
                 <br />
-                <input type="submit" name="submit_gebaeude" id="submit_gebaeude" value="einf&uuml;gen" />
+                <input type="submit" name="submit_gebaeude" id="submit_gebaeude" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_gebaeude" id="reset_gebaeude" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("schadenslage")) {
         %>
-        <form action="./processEnity.jsp" name="form_schadenslage" method="post">
+        <form action="./processEntity.jsp" name="form_schadenslage" method="post">
             <div>
                 <label for="stockwerk">Stockwerk: </label>
                 <input type="text" name="stockwerk" id="stockwerk" value="" required="required" placeholder="Stockwerk:" />
@@ -204,14 +253,14 @@
                     <option value="">siehe Adresse Eigentuemer</option>
                 </select>
                 <br />                
-                <input type="submit" name="submit_schadenslage" id="submit_schadenslage" value="einf&uuml;gen" />
+                <input type="submit" name="submit_schadenslage" id="submit_schadenslage" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_schadenslage" id="reset_schadenslage" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("multimedia")) {
         %>
-        <form action="./processEnity.jsp" name="form_multimedia" method="post">
+        <form action="./processEntity.jsp" name="form_multimedia" method="post">
             <div>
                 <label for="art">Art: </label>
                 <select name="art" id="art" value="" required="required">
@@ -226,21 +275,21 @@
                     <option value="">siehe Adresse Eigentuemer</option>
                 </select>
                 <br /> 
-                <input type="submit" name="submit_multimedia" id="submit_multimedia" value="einf&uuml;gen" />
+                <input type="submit" name="submit_multimedia" id="submit_multimedia" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_multimedia" id="reset_multimedia" value="zur&uuml;cksetzen" />
             </div>
         </form>
         <%
         } else if (comparingString.equals("schadensart")) {
         %>
-        <form action="./processEnity.jsp" name="form_schadensart" method="post">
+        <form action="./processEntity.jsp" name="form_schadensart" method="post">
             <div>
                 <label for="name">Name: </label>
                 <select name="name" id="name" value="" required="required">
                     <option value="">siehe Adresse Eigentuemer</option>
                 </select>
                 <br /> 
-                <input type="submit" name="submit_schadensart" id="submit_schadensart" value="einf&uuml;gen" />
+                <input type="submit" name="submit_schadensart" id="submit_schadensart" value="<%= addOrMod%>" />
                 <input type="reset" name="reset_schadensart" id="reset_schadensart" value="zur&uuml;cksetzen" />
             </div>
         </form>
