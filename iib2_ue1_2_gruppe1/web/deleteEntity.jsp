@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-    response.setHeader("Location", "./modifyEntity.jsp?type=add&entity=" + request.getParameter("entity"));
+    response.setHeader("Location", "./processEntity.jsp?tpye=delete&entity=" + request.getParameter("entity")+"&id="+request.getParameter("id"));
 %>

@@ -32,7 +32,7 @@ public class HandwerkerDao extends DbConnection {
 
             while (resultSet.next()) {
                 Handwerker handwerker = new Handwerker();
-                AdresseDao a = new AdresseDao();
+                HandwerkerDao a = new HandwerkerDao();
                 handwerker.setHawEmail(resultSet.getString("haw_email"));
                 handwerker.setHawVorname(resultSet.getString("haw_vorname"));
                 handwerker.setHawNachname(resultSet.getString("haw_nachname"));
@@ -61,10 +61,10 @@ public class HandwerkerDao extends DbConnection {
 
             while (resultSet.next()) {
                 Handwerker handwerker = new Handwerker();
-                AdresseDao a = new AdresseDao();
+                HandwerkerDao a = new HandwerkerDao();
                 handwerker.setHawEmail(resultSet.getString("haw_email"));
                 handwerker.setHawVorname(resultSet.getString("haw_vorname"));
-                handwerker.setHawNachname(resultSet.getString("haw_nachname")); 
+                handwerker.setHawNachname(resultSet.getString("haw_nachname"));
                 Adresse tmp = new Adresse();
                 tmp.setAdrId(resultSet.getInt("haw_adr_id"));
                 handwerker.setAdresse(new AdresseDao().selectById(tmp).get(0));
@@ -89,6 +89,40 @@ public class HandwerkerDao extends DbConnection {
             preparedStatement.setString(3, _bean.getHawNachname());
             preparedStatement.setInt(5, _bean.getAdresse().getAdrId());
             preparedStatement.setString(6, _bean.getHawPasswort());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int update(Handwerker _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "update handwerker set haw_email = ?, haw_vorname = ?, haw_nachname = ?, haw_adr_id = ? where haw_email = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getHawEmail());
+            preparedStatement.setString(2, _bean.getHawVorname());
+            preparedStatement.setString(3, _bean.getHawNachname());
+            preparedStatement.setInt(4, _bean.getAdresse().getAdrId());
+            preparedStatement.setString(5, _bean.getHawEmail());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int delete(Handwerker _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "delete from handwerker where haw_email = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getHawEmail());
             resultSet = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

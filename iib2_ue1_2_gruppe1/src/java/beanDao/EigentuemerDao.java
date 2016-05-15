@@ -32,7 +32,7 @@ public class EigentuemerDao extends DbConnection {
 
             while (resultSet.next()) {
                 Eigentuemer eigentuemer = new Eigentuemer();
-                AdresseDao a = new AdresseDao();
+                EigentuemerDao a = new EigentuemerDao();
                 eigentuemer.setEigEmail(resultSet.getString("eig_email"));
                 eigentuemer.setEigVorname(resultSet.getString("eig_vorname"));
                 eigentuemer.setEigNachname(resultSet.getString("eig_nachname"));
@@ -62,7 +62,7 @@ public class EigentuemerDao extends DbConnection {
 
             while (resultSet.next()) {
                 Eigentuemer eigentuemer = new Eigentuemer();
-                AdresseDao a = new AdresseDao();
+                EigentuemerDao a = new EigentuemerDao();
                 eigentuemer.setEigEmail(resultSet.getString("eig_email"));
                 eigentuemer.setEigVorname(resultSet.getString("eig_vorname"));
                 eigentuemer.setEigNachname(resultSet.getString("eig_nachname"));
@@ -92,6 +92,41 @@ public class EigentuemerDao extends DbConnection {
             preparedStatement.setBoolean(4, _bean.getEigKunde());
             preparedStatement.setInt(5, _bean.getAdresse().getAdrId());
             preparedStatement.setString(6, _bean.getEigPasswort());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int update(Eigentuemer _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "update eigentuemer set eig_email = ?, eig_vorname = ?, eig_nachname = ?, eig_kunde = ?, eig_adr_id = ? where eig_email = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getEigEmail());
+            preparedStatement.setString(2, _bean.getEigVorname());
+            preparedStatement.setString(3, _bean.getEigNachname());
+            preparedStatement.setBoolean(4, _bean.getEigKunde());
+            preparedStatement.setInt(5, _bean.getAdresse().getAdrId());
+            preparedStatement.setString(6, _bean.getEigEmail());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int delete(Eigentuemer _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "delete from eigentuemer where eig_email = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getEigEmail());
             resultSet = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

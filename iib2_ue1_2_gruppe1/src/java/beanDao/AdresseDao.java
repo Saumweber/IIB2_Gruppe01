@@ -110,4 +110,19 @@ public class AdresseDao extends DbConnection {
         }
         return resultSet;
     }
+
+    public int delete(Adresse _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "delete from adresse where adr_id = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setInt(1, _bean.getAdrId());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
 }

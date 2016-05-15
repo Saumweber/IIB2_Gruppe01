@@ -115,8 +115,8 @@
                                 + "<td>" + ++i + "</td>"
                                 + "<td>" + element.getBerName() + "</td>"
                                 + "<td>" + element.getBerSpezialisierung() + "</td>"
-                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=adresse&amp;id=" + element.getBerId() + "\" title=\"Adresse " + element.getBerId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Adresse " + element.getBerId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
-                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=adresse&amp;id=" + element.getBerId() + "\" title=\"Adresse " + element.getBerId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Adresse " + element.getBerId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=beruf&amp;id=" + element.getBerId() + "\" title=\"Beruf " + element.getBerId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Beruf " + element.getBerId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=beruf&amp;id=" + element.getBerId() + "\" title=\"Beruf " + element.getBerId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Beruf " + element.getBerId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
                                 + "</tr>");
                     }
                 %>
@@ -127,12 +127,10 @@
             <thead>
                 <tr>
                     <th>Laufnummer</th>
-                    <th>Id</th>
-                    <th>Stra&szlig;e</th>
-                    <th>Hausnummer</th>
-                    <th>PLZ</th>
-                    <th>Ort</th>                        
-                    <th>Land</th>
+                    <th>E-Mail</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Adresse</th> 
                     <th>bearbeiten</th>
                     <th>l&ouml;schen</th>
                 </tr>
@@ -140,18 +138,16 @@
             <tbody>
                 <%
                     int i = 0;
-                    java.util.List<bean.Adresse> liste = new beanDao.AdresseDao().select();
-                    for (bean.Adresse element : liste) {
+                    java.util.List<bean.Handwerker> liste = new beanDao.HandwerkerDao().select();
+                    for (bean.Handwerker element : liste) {
                         out.println("<tr>"
                                 + "<td>" + ++i + "</td>"
-                                + "<td>" + element.getAdrId() + "</td>"
-                                + "<td>" + element.getAdrStrasse() + "</td>"
-                                + "<td>" + element.getAdrHausnummer() + "</td>"
-                                + "<td>" + element.getAdrPlz() + "</td>"
-                                + "<td>" + element.getAdrOrt() + "</td>"
-                                + "<td>" + element.getAdrLand() + "</td>"
-                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
-                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + element.getHawEmail()+ "</td>"
+                                + "<td>" + element.getHawVorname()+ "</td>"
+                                + "<td>" + element.getHawNachname()+ "</td>"
+                                + "<td>" + element.getAdresse().toHTMLString()+ "</td>"
+                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=handwerker&amp;id=" + element.getHawEmail() + "\" title=\"Handwerker " + element.getHawEmail() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Handwerker " + element.getHawEmail()+ " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=handwerker&amp;id=" + element.getHawEmail() + "\" title=\"Handwerker " + element.getHawEmail() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Handwerker " + element.getHawEmail() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
                                 + "</tr>");
                     }
                 %>
@@ -162,12 +158,10 @@
             <thead>
                 <tr>
                     <th>Laufnummer</th>
-                    <th>Id</th>
-                    <th>Stra&szlig;e</th>
-                    <th>Hausnummer</th>
-                    <th>PLZ</th>
-                    <th>Ort</th>                        
-                    <th>Land</th>
+                    <th>E-Mail</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Adresse</th> 
                     <th>bearbeiten</th>
                     <th>l&ouml;schen</th>
                 </tr>
@@ -175,18 +169,16 @@
             <tbody>
                 <%
                     int i = 0;
-                    java.util.List<bean.Adresse> liste = new beanDao.AdresseDao().select();
-                    for (bean.Adresse element : liste) {
+                    java.util.List<bean.Gutachter> liste = new beanDao.GutachterDao().select();
+                    for (bean.Gutachter element : liste) {
                         out.println("<tr>"
                                 + "<td>" + ++i + "</td>"
-                                + "<td>" + element.getAdrId() + "</td>"
-                                + "<td>" + element.getAdrStrasse() + "</td>"
-                                + "<td>" + element.getAdrHausnummer() + "</td>"
-                                + "<td>" + element.getAdrPlz() + "</td>"
-                                + "<td>" + element.getAdrOrt() + "</td>"
-                                + "<td>" + element.getAdrLand() + "</td>"
-                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
-                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + element.getGutEmail()+ "</td>"
+                                + "<td>" + element.getGutVorname()+ "</td>"
+                                + "<td>" + element.getGutNachname()+ "</td>"
+                                + "<td>" + element.getAdresse().toHTMLString()+ "</td>"
+                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=gutachter&amp;id=" + element.getGutEmail()+ "\" title=\"Gutachter " + element.getGutEmail() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Gutachter " + element.getGutEmail() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=gutachter&amp;id=" + element.getGutEmail() + "\" title=\"Gutachter " + element.getGutEmail() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Gutachter " + element.getGutEmail() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
                                 + "</tr>");
                     }
                 %>

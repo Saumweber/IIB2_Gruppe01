@@ -5,7 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String title = "iib2_ue1_2_gruppe1: Bearbeiten";
+<%
+    String addOrMod = "";
+    String addedOrModedOrDeleted = "";
+    String title = "iib2_ue1_2_gruppe1:";
+    if (request.getParameter("type") != null
+            && request.getParameter("type").toLowerCase().equals("add")) {
+        addOrMod = "einf&uuml;gen";
+        addedOrModedOrDeleted = "eingef&uuml;gt";
+        title = title + " - Anlegen";
+    } else if (request.getParameter("type").toLowerCase().equals("delete")) {
+        addOrMod = "l&ouml;schen";
+        addedOrModedOrDeleted = "gel&ouml;scht";
+        title = title + " - L&ouml;schen";
+    }
+
     if (!request.getParameter("entity").isEmpty()) {
         String tmp = request.getParameter("entity").toLowerCase();
         title = title + " - " + tmp.substring(0, 1).toUpperCase() + tmp.substring(1);
@@ -24,42 +38,35 @@
                 out.println("</body></html>");
                 return;
             }
-
-            String addOrMod = "";
-            String addedOrModed = "";
-            if (request.getParameter("type") != null
-                    && request.getParameter("type").equals("add")) {
-                addOrMod = "einf&uuml;gen";
-                addedOrModed = "eingef&uuml;gt";
-            } else {
-                addOrMod = "&auml;ndern";
-                addedOrModed = "ge&auml;ndert";
-            }
+        %>
+        <h1><% out.print(title); %></h1>
+        <%
             if (session.getAttribute("return") != null) {
                 String entity = request.getParameter("entity");
                 entity = entity.substring(0, 1).toUpperCase() + entity.substring(1);
                 int returnSet = Integer.parseInt(session.getAttribute("return").toString());
                 session.removeAttribute("return");
                 if (returnSet > 0) {
-                    out.print(entity + " wurde erfolgreich " + addedOrModed + ".");
+                    out.print(entity + " wurde erfolgreich " + addedOrModedOrDeleted + ".");
                 } else {
-                    out.print("Es trat ein Fehler auf. " + entity + " wurde nicht " + addedOrModed + ".");
+                    out.print("Es trat ein Fehler auf. " + entity + " wurde nicht " + addedOrModedOrDeleted + ".");
                 }
             }
 
             String comparingString = request.getParameter("entity") != null ? request.getParameter("entity").toLowerCase() : "";
-            int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
+            String id = request.getParameter("id") != null ? request.getParameter("id").toString() : "0";
             boolean founded = false;
 
             if (comparingString.equals("adresse")) {
                 bean.Adresse element = new bean.Adresse();
-                element.setAdrId(id);
+                element.setAdrId(Integer.parseInt(id));
                 beanDao.AdresseDao elementDao = new beanDao.AdresseDao();
                 if (elementDao.selectById(element).size() > 0) {
                     element = elementDao.selectById(element).get(0);
                     founded = true;
                 } else if (request.getParameter("type") != null
-                        && !request.getParameter("type").equals("add")) {
+                        && !request.getParameter("type").equals("add")
+                        && !request.getParameter("type").equals("delete")) {
                     out.println("<p>Die zu bearbeitende Adresse konnte nicht gefunden werden.</p>");
                 }
         %>
@@ -99,6 +106,17 @@
                 session.setAttribute("modifyId", element.getAdrId());
             }
         } else if (comparingString.equals("eigentuemer")) {
+                bean.Eigentuemer element = new bean.Eigentuemer();
+                element.setEigEmail(id);
+                beanDao.EigentuemerDao elementDao = new beanDao.EigentuemerDao();
+                if (elementDao.selectByEmail(element).size() > 0) {
+                    element = elementDao.selectByEmail(element).get(0);
+                    founded = true;
+                } else if (request.getParameter("type") != null
+                        && !request.getParameter("type").equals("add")
+                        && !request.getParameter("type").equals("delete")) {
+                    out.println("<p>Die zu bearbeitende Adresse konnte nicht gefunden werden.</p>");
+                }
         %>
         <form action="./processEntity.jsp" name="form_eigentuemer" method="post">
             <div>

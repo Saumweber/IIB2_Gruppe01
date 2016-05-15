@@ -32,10 +32,10 @@ public class GutachterDao extends DbConnection {
 
             while (resultSet.next()) {
                 Gutachter gutachter = new Gutachter();
-                AdresseDao a = new AdresseDao();
+                GutachterDao a = new GutachterDao();
                 gutachter.setGutEmail(resultSet.getString("gut_email"));
                 gutachter.setGutVorname(resultSet.getString("gut_vorname"));
-                gutachter.setGutNachname(resultSet.getString("gut_nachname")); 
+                gutachter.setGutNachname(resultSet.getString("gut_nachname"));
                 Adresse tmp = new Adresse();
                 tmp.setAdrId(resultSet.getInt("gut_adr_id"));
                 gutachter.setAdresse(new AdresseDao().selectById(tmp).get(0));
@@ -61,7 +61,7 @@ public class GutachterDao extends DbConnection {
 
             while (resultSet.next()) {
                 Gutachter gutachter = new Gutachter();
-                AdresseDao a = new AdresseDao();
+                GutachterDao a = new GutachterDao();
                 gutachter.setGutEmail(resultSet.getString("gut_email"));
                 gutachter.setGutVorname(resultSet.getString("gut_vorname"));
                 gutachter.setGutNachname(resultSet.getString("gut_nachname"));
@@ -89,6 +89,40 @@ public class GutachterDao extends DbConnection {
             preparedStatement.setString(3, _bean.getGutNachname());
             preparedStatement.setInt(5, _bean.getAdresse().getAdrId());
             preparedStatement.setString(6, _bean.getGutPasswort());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int update(Gutachter _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "update gutachter set gut_email = ?, gut_vorname = ?, gut_nachname = ?, gut_adr_id = ? where gut_email = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getGutEmail());
+            preparedStatement.setString(2, _bean.getGutVorname());
+            preparedStatement.setString(3, _bean.getGutNachname());
+            preparedStatement.setInt(4, _bean.getAdresse().getAdrId());
+            preparedStatement.setString(5, _bean.getGutEmail());
+            resultSet = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return resultSet;
+    }
+
+    public int delete(Gutachter _bean) {
+        PreparedStatement preparedStatement = null;
+        int resultSet = -1;
+        String statement = "delete from gutachter where adr_id = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getGutEmail());
             resultSet = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

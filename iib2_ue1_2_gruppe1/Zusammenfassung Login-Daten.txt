@@ -1,21 +1,21 @@
 Zusammenfassung der Login-Daten:
 
-Handwerker (E-Mail;Passwort;SHA3-256;):
-khmeier@wassertechnik.de;khmeier;b0d07986fa4dace2d658722481d4c6cbd6086b828f28d34dfa747a361028a671;
-hschmidt@heizungsbau.de;hschmidt;9b8185e58f243e1e9ac0a2f2219bd10390a3a11752869e0d4eeff827da32d25f;
-lspengler@elektrik-spengler.de;lspengler;183894773994679bcebf1a52cb189bdf3fa64b13f14de26124d2d4398ef5dbb2;
-tweber@malerweber.de;tweber;45e94512147840f80bc078d535632ee0db7dd736c908c472b83aa456490a85a2;
-kmaler@maler.de;kmaler;c4e4a3fa099882c74a9ddedba369899d9c41f647f2931a14415311cea07557cb;
-kwerner@dachdecker.de;kwerner;9a39466ed31ce3d05e6f9da1a7df09ecda06465c7a6cd864c0fa1e67282a5c75;
+Handwerker (E-Mail;Passwort;SHA-256;):
+khmeier@wassertechnik.de;khmeier;3f2f3b5bf060d7b861450275ed7b0666acbc11536b3f0b0cc0a95b139a67dc7f;
+hschmidt@heizungsbau.de;hschmidt;;
+lspengler@elektrik-spengler.de;lspengler;d0d7014551aa8e40f274b58c162cf0940f6368dcbc6722d156d346f9699a8405;
+tweber@malerweber.de;tweber;2e897cc55ac3e6758fc728f918ce822f951574fd081f9cb85bcd24183e963b9c;
+kmaler@maler.de;kmaler;a7dba44031ae7ea13608fb50271f9910eedda65a4809924b1b6637094e998d6d;
+kwerner@dachdecker.de;kwerner;a6543df705c58f75b465df99783b06b3105d9c544fdc676e85d0a2b8d3e0df12;
 
-Gutachter (E-Mail;Passwort;SHA3-256):
-hschneider@gutachten.de;hschneider;e4a4279363607ee48b35c5c3886628d8b136b0a4c78eb298d338f7e7dca7f457;
-afischer@gutachten.de;afischer;ff964d92ea2b4ea2a8ed224775352d2193a1530a68b4d23121150e013d1504d6;
-jhofmann@gutachten.de;jhofmann;204fdf0400a7b27eb2e365f439ebf5d1dd1e8f082895b4a3b075a398ef593ab6;
+Gutachter (E-Mail;Passwort;SHA-256):
+hschneider@gutachten.de;hschneider;c354da74d01a83221cf0dfa11e8b565efec3ff5c35e4fec814c468fa55427996;
+afischer@gutachten.de;afischer;a51357aee4178359c5feb533b180f16e8dbe47d9dbaf92513cccc151470ac584;
+jhofmann@gutachten.de;jhofmann;f19fdb854a914b2edf7c85364a3b34b6688c8105333161f57f7210a2fa02750b;
 
-Eigentuemer: (E-Mail;Passwort;SHA3-256):
-melanie@wolf.de;melanie;0c44688385ae96d76a36b7082b53eb62f03be87453f9a4176f9e59c19be7c160;
-lukas@schulz.de;lukas;b7dd315b96e6a5fdc18f408814e7983c9afe2986fd198a17073d24a23065b1fe;
-gerda@koch.de;gerda;7b80aa860e983e643e6e67ff75ea7dbf58f7207e21371ee8a8d73abeb153f041;
+Eigentuemer: (E-Mail;Passwort;SHA-256):
+melanie@wolf.de;melanie;dfef5e53f9848472560a3e680a310d097ecc75919740646df38d31cab7aa07ac;
+lukas@schulz.de;lukas;2b2ff63949b46caaa980c971484ba099aea045a4cbe887bccf4faff00924484a;
+gerda@koch.de;gerda;175b3fb68a4b71940afe8783da226fd8395e0519392c8e6fce04efcb1c215696;
 
-SHA3-256 berechnet über http://emn178.github.io/online-tools/sha3_256.html
+SHA-256 berechnet mit http://emn178.github.io/online-tools/sha256.html
