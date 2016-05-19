@@ -14,6 +14,8 @@
         String loginEmail = request.getParameter("email");
         String loginPassword = request.getParameter("password");
 
+        /* 
+        // gem‰ﬂ E-Mail auskommentiert, da scheinbar Java anders hashed als MySQL
         java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
         md.update(loginPassword.getBytes("UTF-8"));
         byte[] digest = md.digest();
@@ -22,7 +24,7 @@
             hexString.append(Integer.toHexString(0xFF & digest[i]));
         }
         loginPassword = hexString.toString();
-
+         */
         // noch nicht eingeloggt, da Session-Attribut nicht existiert
         if (session.getAttribute("loginEmail") == null) {
             beanDao.GutachterDao gutachterDao = new beanDao.GutachterDao();
