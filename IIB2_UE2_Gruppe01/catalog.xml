@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/D:/Desktop/iib2_gruppe1/iib2_ue2_gruppe1/../../new%201.xsd" uri="src/conf/xml-resources/jaxb/test/new%201.xsd"/>
+    <system systemId="file:/D:/Desktop/iib2_gruppe1/iib2_ue2_gruppe1/../../auftragsinformationen.xsd" uri="src/conf/xml-resources/jaxb/auftragsinformationen/auftragsinformationen.xsd"/>
+    <system systemId="file:/D:/Desktop/iib2_gruppe1/IIB2_UE2_Gruppe01/web/auftragsinformationen.xsd" uri="src/conf/xml-resources/jaxb/auftragsinformationen/auftragsinformationen.xsd"/>
+</catalog>
