@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="iib2_ue1_2_gruppe1" default="default" basedir=".">
-    <description>Builds, tests, and runs the project iib2_ue1_2_gruppe1.</description>
+<project name="IIB2_UE1_2_Gruppe01" default="default" basedir=".">
+    <description>Builds, tests, and runs the project IIB2_UE1_2_Gruppe01.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
