@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20.06.2016 00:49:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Lnsiehtan" table="lnsiehtan" catalog="iib2_ue2_gruppe01" optimistic-lock="version">
+        <id name="lnsId" type="java.lang.Integer">
+            <column name="lns_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="nutzer" class="bean.Nutzer" fetch="select">
+            <column name="Nutzer_ntz_email" length="50" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sanierungsauftrag" class="bean.Sanierungsauftrag" fetch="select">
+            <column name="Sanierungsauftrag_snr_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20.06.2016 00:49:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Nutzer" table="nutzer" catalog="iib2_ue2_gruppe01" optimistic-lock="version">
+        <id name="ntzEmail" type="string">
+            <column name="ntz_email" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="beruf" class="bean.Beruf" fetch="select">
+            <column name="Beruf_brf_id" not-null="true" />
+        </many-to-one>
+        <property name="ntzPasswort" type="string">
+            <column name="ntz_passwort" length="256" not-null="true" />
+        </property>
+        <property name="ntzName" type="string">
+            <column name="ntz_name" length="50" />
+        </property>
+        <property name="ntzVorname" type="string">
+            <column name="ntz_vorname" length="50" />
+        </property>
+        <set name="lnsiehtans" table="lnsiehtan" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Nutzer_ntz_email" length="50" not-null="true" />
+            </key>
+            <one-to-many class="bean.Lnsiehtan" />
+        </set>
+    </class>
+</hibernate-mapping>
