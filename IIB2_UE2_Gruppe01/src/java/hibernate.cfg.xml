@@ -4,8 +4,12 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/iib2_ue2_gruppe1?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/iib2_ue2_gruppe01?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">gruppe1</property>
     <property name="hibernate.connection.password">iib2</property>
+    <mapping resource="bean/Lnsiehtan.hbm.xml"/>
+    <mapping resource="bean/Nutzer.hbm.xml"/>
+    <mapping resource="bean/Sanierungsauftrag.hbm.xml"/>
+    <mapping resource="bean/Beruf.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

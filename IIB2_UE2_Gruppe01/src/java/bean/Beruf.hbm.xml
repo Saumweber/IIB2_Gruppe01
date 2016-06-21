@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20.06.2016 00:49:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bean.Beruf" table="beruf" catalog="iib2_ue2_gruppe01" optimistic-lock="version">
+        <id name="brfId" type="java.lang.Integer">
+            <column name="brf_id" />
+            <generator class="identity" />
+        </id>
+        <property name="brfBerufname" type="string">
+            <column name="brf_berufname" length="70" />
+        </property>
+        <property name="brfSpezialisierung" type="string">
+            <column name="brf_spezialisierung" length="50" />
+        </property>
+        <set name="nutzers" table="nutzer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Beruf_brf_id" not-null="true" />
+            </key>
+            <one-to-many class="bean.Nutzer" />
+        </set>
+    </class>
+</hibernate-mapping>
