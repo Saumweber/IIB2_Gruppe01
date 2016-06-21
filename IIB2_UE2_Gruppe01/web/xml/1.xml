@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<auftrag xmlns="generated"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="generated auftragsinformationen.xsd"
+         id="123" gebaeude="gebaeude4" status="angelegt">    
+    <beschreibung>beschreibung</beschreibung>
+</auftrag>
