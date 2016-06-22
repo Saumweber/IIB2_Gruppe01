@@ -1,12 +1,16 @@
 <?xml version="1.0" ?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="generated"
+	targetNamespace="generated"
+	attributeFormDefault="unqualified" 
+	elementFormDefault="qualified">
   <xs:element name="auftrag">
     <xs:complexType>
       <xs:sequence>
         <xs:element type="xs:string" name="beschreibung" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute type="xs:unsignedInt" name="id" use="required"/>
-      <xs:attribute type="xs:unsignedLong" name="gebaeude" use="required"/>
+      <xs:attribute type="xs:string" name="gebaeude" use="required"/>
       <xs:attribute type="xs:string" name="status" use="required"/>
     </xs:complexType>
   </xs:element>
