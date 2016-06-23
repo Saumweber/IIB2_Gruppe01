@@ -28,6 +28,53 @@
                 return;
             }
         %>
+        
+        
+        <% 
+            if(session.getAttribute("nutzerArt") == "Handwerker"){
+        %>     
+           
+        <h1>Anlegen</h1>
+        <ul>
+            <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
+        </ul>
+        
+        <h1>Einsehen</h1>
+        <ul>
+            <li><a href="./seeEntity.jsp?entity=eigeneAuftaege" title="eigene Aufträge einsehen">Eigene Aufträge</a></li>
+            <li><a href="./seeEntity.jsp?entity=gebaeudeAuftaege" title="Aufträge pro Gebäude einsehen">Gebäudeaufträge</a></li>
+            
+            <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n</a></li>     
+        </ul> 
+        <p>Das Dashboard muss für den Handwerker noch angepasst werden.</p>
+                
+        <%       
+            } 
+        %>
+        
+        
+        
+        
+        
+        <% 
+            if(session.getAttribute("nutzerArt") == "Bauplaner"){
+        %>        
+        
+        <h1>Anlegen</h1>
+        <ul>
+            <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
+        </ul>
+        
+        <h1>Einsehen</h1>
+        <ul>
+            <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n)</a></li>
+        </ul>
+        
+        <p>Das Dashboard muss für den Bauplaner noch angepasst werden.</p>
+        <% 
+            }  
+        %>
+        
         <%--
         <h1>Anlegen</h1>
         <ul>

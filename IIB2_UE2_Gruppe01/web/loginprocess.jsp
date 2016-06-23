@@ -46,7 +46,7 @@
             */
             }
             if (login) {
-                session.setAttribute("loginEmail", "email"); 
+                session.setAttribute("loginEmail", "email");        
             }
         }
 
@@ -58,20 +58,24 @@
             nutzer.setNtzEmail(loginEmail);    
             beanDao.NutzerDao ntzDao = new beanDao.NutzerDao();
             bean.Nutzer ntz = new bean.Nutzer();
-            ntz = ntzDao.selectByEmail(nutzer).get(0);   
+            ntz = ntzDao.selectByEmail(nutzer).get(0);
+            session.setAttribute("nutzer", ntz);
+            String bauplaner = "Bauplaner";
+            String handwerker = "Handwerker";
             
             if (ntz.getBeruf().getBrfBerufname().contentEquals("Bauplaner")){
-                //Bauplaner
-                response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                response.setHeader("Location", "./dashboardBauplaner.jsp");
+                session.setAttribute("nutzerArt", bauplaner);
+                //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                //response.setHeader("Location", "./dashboard.jsp");
+                
             } else {
-                //Handwerker
-                response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                response.setHeader("Location", "./dashboardHandwerker.jsp");
+                session.setAttribute("nutzerArt", handwerker);
+                //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                //response.setHeader("Location", "./dashboard.jsp");
             }
             
-            //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            //response.setHeader("Location", "./dashboard.jsp");
+            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            response.setHeader("Location", "./dashboard.jsp");
             
         } else {
             session.removeAttribute("loginEmail");

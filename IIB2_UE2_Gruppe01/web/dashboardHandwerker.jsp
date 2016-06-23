@@ -29,6 +29,8 @@
             }
         %>
         <h1>Handwerker</h1>
+        
+        <%--
         <h1>Anlegen</h1>
         <ul>
             <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
@@ -43,8 +45,14 @@
             <li><a href="./newEntity.jsp?entity=schadensart" title="Schadensart anlegen">Schadensart</a></li>
             <li><a href="./newEntity.jsp?entity=auftrag" title="Auftrag anlegen">Auftrag</a></li>
         </ul>
+        --%>
+        
         <h1>Einsehen</h1>
         <ul>
+            <li><a href="./seeEntity.jsp?entity=eigeneAuftaege" title="eigene Aufträge einsehen">Eigene Aufträge</a></li>
+            <li><a href="./seeEntity.jsp?entity=gebaeudeAuftaege" title="Aufträge pro Gebäude einsehen">Gebäudeaufträge</a></li>
+            
+            <%--
             <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n)</a></li>
             <li><a href="./seeEntity.jsp?entity=eigentuemer" title="Eigent&uuml;mer einsehen">Eigent&uuml;mer</a></li>
             <li><a href="./seeEntity.jsp?entity=beruf" title="Beruf(e) einsehen">Beruf(e)</a></li>
@@ -56,6 +64,7 @@
             <li><a href="./seeEntity.jsp?entity=multimedia" title="Multimedia einsehen">Multimedia</a></li>
             <li><a href="./seeEntity.jsp?entity=schadensart" title="Schadensart(en) einsehen">Schadensart(en)</a></li>
             <li><a href="./seeEntity.jsp?entity=auftrag" title="Auftrag/ Auftr&auml;ge einsehen">Auftrag/ Auftr&auml;ge</a></li>
+            --%>
         </ul>
     </body>
 </html>

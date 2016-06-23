@@ -26,7 +26,7 @@
     
     
     //Adresse bearbeiten
-    /*
+    
     if (comparingString.equals("adresse")) {
         bean.Adresse element = new bean.Adresse();
         if (!type.equals("add")) {
@@ -55,5 +55,5 @@
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         response.setHeader("Location", "./modifyEntity.jsp?entity=adresse&id=" + element.getAdrId());
     }
-    */
+    
 %>
