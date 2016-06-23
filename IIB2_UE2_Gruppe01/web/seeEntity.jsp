@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String title = "IIB2_UE2_Gruppe1: Einsehen";
     if (!request.getParameter("entity").isEmpty()) {
-        String tmp = request.getParameter("entity").toLowerCase();
+        String tmp = request.getParameter("entity");
         title = title + " - " + tmp.substring(0, 1).toUpperCase() + tmp.substring(1);
     }
 %>
@@ -18,7 +18,7 @@
         <title><% out.print(title); %></title>
     </head>
     <body>
-        <jsp:include page="./menueHeaderHandwerker.jsp" />
+        <jsp:include page="./menueHeader.jsp" />
         <% if (session.getAttribute("loginEmail") == null) {
                 out.println(miscellaneous.MsgHandling.printMsg(403));
                 out.println("</body></html>");
@@ -28,9 +28,9 @@
         <h1><% out.print(title); %></h1>
         <table>
             <%
-                String comparingString = request.getParameter("entity").toLowerCase();
-                               
-                if (comparingString.equals("eigeneAuftaege")) {
+                String comparingString = request.getParameter("entity");
+                        
+                if (comparingString.equals("eigeneAuftraege")) {
             %>
             <thead>
                 <tr>
@@ -38,13 +38,17 @@
                     <th>IFC Pfad</th>
                     <th>Gebäude</th>
                     <th>Status</th>
-                    <th>Beschreibung</th>                        
+                    <th>Beschreibung</th>
+                    <th>Bearbeiten</th>
                 </tr>
             </thead>
             <tbody>
                 <%
                     int i = 0;
-                    java.util.List<bean.Sanierungsauftrag> liste = new beanDao.SanierungsauftragDao().selectByNutzer(nutzer);
+                    bean.Nutzer ntz = new bean.Nutzer();
+                    ntz = (bean.Nutzer) session.getAttribute("nutzer");
+                    java.util.List<bean.Sanierungsauftrag> liste = new beanDao.SanierungsauftragDao().selectByNutzer(ntz);
+                    
                     for (bean.Sanierungsauftrag element : liste) {
                         out.println("<tr>"
                                 + "<td>" + ++i + "</td>"
@@ -52,8 +56,47 @@
                                 + "<td>" + element.getSnrGebaeude()+ "</td>"
                                 + "<td>" + element.getSnrStatus()+ "</td>"
                                 + "<td>" + element.getSnrBeschreibung()+ "</td>"
-                                //+ "<td>" + "<a href=\"./modifyEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
-                                //+ "<td>" + "<a href=\"./deleteEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=eigeneAuftraege&amp;id=" + element.getSnrId() + "\" title=\"Sanierungsauftrag " + element.getSnrId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Sanierungsauftrag " + element.getSnrId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
+                                //+ "<td>" + "<a href=\"./deleteEntity.jsp?entity=eigeneAuftraege&amp;id=" + element.getSnrId() + "\" title=\"Sanierungsauftrag " + element.getSnrId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Sanierungsauftrag " + element.getSnrId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
+                                + "</tr>");
+                    }
+                %>
+            </tbody>
+            <%    
+            }
+            %>
+            
+            
+            <%--
+            <%    
+            } else if (comparingString.equals("adresse")) {
+            %>
+            <thead>
+                <tr>
+                    <th>Laufnummer</th>
+                    <th>Stra&szlig;e</th>
+                    <th>Hausnummer</th>
+                    <th>PLZ</th>
+                    <th>Ort</th>                        
+                    <th>Land</th>
+                    <th>bearbeiten</th>
+                    <th>l&ouml;schen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int i = 0;
+                    java.util.List<bean.Adresse> liste = new beanDao.AdresseDao().select();
+                    for (bean.Adresse element : liste) {
+                        out.println("<tr>"
+                                + "<td>" + ++i + "</td>"
+                                + "<td>" + element.getAdrStrasse() + "</td>"
+                                + "<td>" + element.getAdrHausnummer() + "</td>"
+                                + "<td>" + element.getAdrPlz() + "</td>"
+                                + "<td>" + element.getAdrOrt() + "</td>"
+                                + "<td>" + element.getAdrLand() + "</td>"
+                                + "<td>" + "<a href=\"./modifyEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " bearbeiten\" class=\"img\"><img src=\"./pictures/edit.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu bearbeiten\" class=\"icon\" /></a>" + "</td>"
+                                + "<td>" + "<a href=\"./deleteEntity.jsp?entity=adresse&amp;id=" + element.getAdrId() + "\" title=\"Adresse " + element.getAdrId() + " l&ouml;schen\" class=\"img\"><img src=\"./pictures/delete.png\" alt=\"Bild, um Adresse " + element.getAdrId() + " zu l&ouml;schen\" class=\"icon\" /></a>" + "</td>"
                                 + "</tr>");
                     }
                 %>
@@ -361,7 +404,7 @@
             <%
                 }
             %>
-
+            --%>
         </table>
     </body>
 </html>
