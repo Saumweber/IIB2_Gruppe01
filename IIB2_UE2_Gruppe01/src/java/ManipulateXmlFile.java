@@ -38,7 +38,7 @@ public class ManipulateXmlFile {
         verbose = true;
     }
 
-    public static Object getObjectOutOfXmlFile(Class returntypeOfObject, String filenameWithoutExtension) {
+    public static Object loadXmlFile(Class returntypeOfObject, String filenameWithoutExtension) {
         try {
             xmlFile = new FileInputStream("./web/xml/1.xml");//xmlPath + filenameWithoutExtension + ".xml");
             Unmarshaller um = context.createUnmarshaller();
@@ -59,23 +59,23 @@ public class ManipulateXmlFile {
         return auftrag;
     }
 
-    public static Object getObjectOutOfXmlFile(Class returntypeOfObject, String filenameWithoutExtension, boolean detailedError) {
+    public static Object loadXmlFile(Class returntypeOfObject, String filenameWithoutExtension, boolean detailedError) {
         verbose = detailedError;
-        return getObjectOutOfXmlFile(returntypeOfObject, filenameWithoutExtension);
+        return loadXmlFile(returntypeOfObject, filenameWithoutExtension);
     }
 
-    public static Object getObjectOutOfXmlFile(Class returntypeOfObject, String filenameWithoutExtension, String pathWithClosingSlash) {
+    public static Object loadXmlFile(Class returntypeOfObject, String filenameWithoutExtension, String pathWithClosingSlash) {
         xmlPath = pathWithClosingSlash;
-        return getObjectOutOfXmlFile(returntypeOfObject, filenameWithoutExtension);
+        return loadXmlFile(returntypeOfObject, filenameWithoutExtension);
     }
 
-    public static Object getObjectOutOfXmlFile(Class returntypeOfObject, String filenameWithoutExtension, String pathWithClosingSlash, boolean detailedError) {
+    public static Object loadXmlFile(Class returntypeOfObject, String filenameWithoutExtension, String pathWithClosingSlash, boolean detailedError) {
         verbose = detailedError;
         xmlPath = pathWithClosingSlash;
-        return getObjectOutOfXmlFile(returntypeOfObject, filenameWithoutExtension);
+        return loadXmlFile(returntypeOfObject, filenameWithoutExtension);
     }
 
-    public static String[] createXmlFile(Class typeOfInstanceObject, Object instanceObject) {
+    public static String[] saveXmlFile(Class typeOfInstanceObject, Object instanceObject) {
         String dir = "";
         String filename = "";
         try {
@@ -107,19 +107,19 @@ public class ManipulateXmlFile {
         return new String[]{filename, dir};
     }
 
-    public static String[] createXmlFile(Class typeOfInstanceObject, Object instanceObject, boolean detailedError) {
+    public static String[] saveXmlFile(Class typeOfInstanceObject, Object instanceObject, boolean detailedError) {
         verbose = detailedError;
-        return createXmlFile(typeOfInstanceObject, instanceObject);
+        return saveXmlFile(typeOfInstanceObject, instanceObject);
     }
 
-    public static String[] createXmlFile(Class typeOfInstanceObject, Object instanceObject, String pathWithClosingSlash) {
+    public static String[] saveXmlFile(Class typeOfInstanceObject, Object instanceObject, String pathWithClosingSlash) {
         xmlPath = pathWithClosingSlash;
-        return createXmlFile(typeOfInstanceObject, instanceObject);
+        return saveXmlFile(typeOfInstanceObject, instanceObject);
     }
 
-    public static String[] createXmlFile(Class typeOfInstanceObject, Object instanceObject, String pathWithClosingSlash, boolean detailedError) {
+    public static String[] saveXmlFile(Class typeOfInstanceObject, Object instanceObject, String pathWithClosingSlash, boolean detailedError) {
         verbose = detailedError;
         xmlPath = pathWithClosingSlash;
-        return createXmlFile(typeOfInstanceObject, instanceObject);
+        return saveXmlFile(typeOfInstanceObject, instanceObject);
     }
 }
