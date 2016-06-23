@@ -16,12 +16,26 @@ public class TestManipulateXmlFile {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         Auftrag auftrag;
-        auftrag = (Auftrag) ManipulateXmlFile.getObjectOutOfXmlFile(Auftrag.class, "1");
+        String[] result;
+        System.out.println("XML-File 1.xml auslesen");
+        auftrag = (Auftrag) ManipulateXmlFile.loadXmlFile(Auftrag.class, "1");
+        System.out.println("Id: " + auftrag.getId());
+        System.out.println("Beschreibung: " + auftrag.getBeschreibung());
+        System.out.println("Status: " + auftrag.getStatus());
+        System.out.println("Gebäude: " + auftrag.getGebaeude());
 
-        auftrag.setBeschreibung("\n" + auftrag.getBeschreibung() + "\n" + auftrag.getBeschreibung());
+        System.out.println("\nneues XML-File anlegen --> Id muss anders sein");
+        auftrag.setBeschreibung(auftrag.getBeschreibung() + "\n" + auftrag.getBeschreibung());
+        auftrag.setStatus("angelegt");
         auftrag.setId(2);
-        String[] result = ManipulateXmlFile.createXmlFile(Auftrag.class, auftrag);
+        result = ManipulateXmlFile.saveXmlFile(Auftrag.class, auftrag);        
+        System.out.println("File: "+result[0]+" | Dir: "+result[1]);
+
+        System.out.println("\nXML-File updaten --> zunaechst XML-File auslesen, dann manipulieren");
+        auftrag.setStatus("neuer Status 2");
+        result = ManipulateXmlFile.saveXmlFile(Auftrag.class, auftrag);
+        System.out.println("File: "+result[0]+" | Dir: "+result[1]);
     }
+
 }
