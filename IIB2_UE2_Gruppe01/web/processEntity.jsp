@@ -16,17 +16,43 @@
             type = "delete";
         }
     }
-    String comparingString = request.getParameter("entity") != null ? request.getParameter("entity").toLowerCase() : "";
+    String comparingString = request.getParameter("entity") != null ? request.getParameter("entity") : "";
     
     //TODO Auftragsstatus bearbeiten
+    if (comparingString.equals("eigeneAuftraege")) {
+        bean.Sanierungsauftrag element = new bean.Sanierungsauftrag();
+        beanDao.SanierungsauftragDao elementDao = new beanDao.SanierungsauftragDao();
+        
+        if (!type.equals("add")) {
+            element.setSnrId(Integer.parseInt(session.getAttribute("modifyId").toString()));
+            element = elementDao.selectById(element).get(0);
+        }
+        
+        session.removeAttribute("modifyId");
+
+        if (type == "delete") {
+            int result = elementDao.delete(element);
+            session.setAttribute("return", result);
+        } else {
+            element.setSnrStatus(request.getParameter("status"));
+            int result = -1;
+            if (!type.equals("add")) {
+                result = elementDao.update(element);
+            } else {
+                result = elementDao.insert(element);
+            }
+            session.setAttribute("return", result);
+        }
+        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        response.setHeader("Location", "./modifyEntity.jsp?entity=eigeneAuftraege&id=" + element.getSnrId());
+    }
     
     //TODO Handwerker anlegen
     
     //TODO Sanierungsauftrag anlegen
     
     
-    //Adresse bearbeiten
-    
+    /* Adresse bearbeiten    
     if (comparingString.equals("adresse")) {
         bean.Adresse element = new bean.Adresse();
         if (!type.equals("add")) {
@@ -54,6 +80,6 @@
         }
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         response.setHeader("Location", "./modifyEntity.jsp?entity=adresse&id=" + element.getAdrId());
-    }
+    } */
     
 %>

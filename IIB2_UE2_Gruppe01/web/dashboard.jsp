@@ -38,7 +38,7 @@
         <ul>
             
             <li><a href="./seeEntity.jsp?entity=eigeneAuftraege" title="eigene Aufträge einsehen">Eigene Aufträge</a></li>
-            <li><a href="./seeEntity.jsp?entity=gebaeudeAuftaege" title="Aufträge pro Gebäude einsehen">Gebäudeaufträge</a></li>
+            <li><a href="./searchGebaeude.jsp" title="Aufträge pro Gebäude einsehen">Aufträge eines Gebäudes</a></li>
                 
         </ul> 
                 
@@ -52,7 +52,7 @@
         
         <h1>Anlegen</h1>
         <ul>
-            <%-- <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li> --%>
+            <li><a href="./newEntity.jsp?entity=handwerker" title="Handwerker anlegen">Handwerker</a></li>
         </ul>
         
         <h1>Einsehen</h1>

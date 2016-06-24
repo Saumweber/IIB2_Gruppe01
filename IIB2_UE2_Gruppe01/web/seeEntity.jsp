@@ -63,7 +63,36 @@
                 %>
             </tbody>
             <%    
-            }
+            } else if (comparingString.equals("gebaeudename")) {
+            %>
+            <thead>
+                <tr>
+                    <th>Laufnummer</th>
+                    <th>IFC Pfad</th>
+                    <th>Gebäude</th>
+                    <th>Status</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int i = 0;
+                    bean.Sanierungsauftrag snr = new bean.Sanierungsauftrag();
+                    snr.setSnrGebaeude(request.getParameter("gebaeudename"));
+                    java.util.List<bean.Sanierungsauftrag> liste = new beanDao.SanierungsauftragDao().selectByGebaeude(snr);
+                    for (bean.Sanierungsauftrag element : liste) {
+                        out.println("<tr>"
+                                + "<td>" + ++i + "</td>"
+                                + "<td>" + element.getSnrIfcpfad()+ "</td>"
+                                + "<td>" + element.getSnrGebaeude()+ "</td>"
+                                + "<td>" + element.getSnrStatus()+ "</td>"
+                                + "<td>" + element.getSnrBeschreibung()+ "</td>"
+                                + "</tr>");
+                    }
+                %>
+            </tbody>
+            <%
+            } 
             %>
             
             
