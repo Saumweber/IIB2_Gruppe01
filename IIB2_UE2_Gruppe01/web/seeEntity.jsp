@@ -92,7 +92,34 @@
                 %>
             </tbody>
             <%
-            } 
+            } else if (comparingString.equals("nutzer")) {
+            %>
+            <thead>
+                <tr>
+                    <th>Laufnummer</th>
+                    <th>E-Mail</th>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Beruf</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    int i = 0;
+                    java.util.List<bean.Nutzer> liste = new beanDao.NutzerDao().select();
+                    for (bean.Nutzer element : liste) {
+                        out.println("<tr>"
+                                + "<td>" + ++i + "</td>"
+                                + "<td>" + element.getNtzEmail()+ "</td>"
+                                + "<td>" + element.getNtzName()+ "</td>"
+                                + "<td>" + element.getNtzVorname()+ "</td>"
+                                + "<td>" + element.getBeruf().getBrfBerufname()+ "</td>"
+                                + "</tr>");
+                    }
+                %>
+            </tbody>
+            <%
+            }
             %>
             
             

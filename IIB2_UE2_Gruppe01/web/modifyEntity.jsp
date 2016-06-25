@@ -4,6 +4,7 @@
     Author     : Florian
 --%>
 
+<%@page import="beanDao.BerufDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String addOrMod = "";
@@ -41,7 +42,7 @@
             }
         %>
         <h1><% out.print(title); %></h1>
-         <%
+        <%
             if (session.getAttribute("return") != null) {
                 String entity = request.getParameter("entity");
                 entity = entity.substring(0, 1).toUpperCase() + entity.substring(1);
@@ -57,7 +58,9 @@
             String comparingString = request.getParameter("entity") != null ? request.getParameter("entity") : "";
             String id = request.getParameter("id") != null ? request.getParameter("id").toString() : "0";
             boolean founded = false;
-
+        %>
+        
+        <%
             if (comparingString.equals("eigeneAuftraege")) {
                 bean.Sanierungsauftrag element = new bean.Sanierungsauftrag();
                 element.setSnrId(Integer.parseInt(id));
@@ -68,7 +71,7 @@
                 } else if (request.getParameter("type") != null
                         && !request.getParameter("type").equals("add")
                         && !request.getParameter("type").equals("delete")) {
-                    out.println("<p>Die zu bearbeitende Adresse konnte nicht gefunden werden.</p>");
+                    out.println("<p>Die zu bearbeitende Sanierungsauftrag konnte nicht gefunden werden.</p>");
                 }
         %>
         <form action="./processEntity.jsp?entity=eigeneAuftraege" name="from_eigeneAuftraege" method="post">
@@ -101,6 +104,53 @@
             if (founded) {
                 session.setAttribute("modifyId", element.getSnrId());
             }
+        } else if (comparingString.equals("handwerker")) {
+                bean.Nutzer element = new bean.Nutzer();               
+        %>
+        <form action="./processEntity.jsp?entity=handwerker" name="form_handwerker" method="post">
+            <div>
+                <label for="email">E-Mail: </label>
+                <input type="text" name="email" id="email" value="" required="required" placeholder="E-Mail" />
+                <br />
+                <label for="passwort">Passwort: </label>
+                <input type="text" name="passwort" id="passwort" value="" required="required" placeholder="Passwort" />
+                <br />
+                <label for="name">Nachname: </label>
+                <input type="text" name="name" id="name" value="" required="required" placeholder="Nachname" />
+                <br />
+                <label for="vorname">Vorname: </label>
+                <input type="text" name="vorname" id="vorname" value="" required="required" placeholder="Vorname" />
+                <br />
+                
+                <label for="beruf">Beruf: </label>
+                <select name="beruf" id="beruf" value="" required="required">
+                    <%
+                    int i = 0;
+                    bean.Beruf brf = new bean.Beruf();
+                    java.util.List<bean.Beruf> liste = new beanDao.BerufDao().selectWithoutBauplaner();
+                    
+                    for (bean.Beruf tmp : liste) {
+                    %>   
+                    <option value="<%= tmp.getBrfId()%>"    
+                    <%    
+                        
+                        out.println("<tr>"
+                                //+ "<td>" + ++i + "</td>"
+                                + "<td>" + tmp.getBrfId()+" - "+ "</td>"
+                                + "<td>" + tmp.getBrfBerufname()+" - "+ "</td>"
+                                + "<td>" + tmp.getBrfSpezialisierung()+ "</td>"
+                                + "</tr>");
+                    }
+                    %>
+                    </option>
+                </select>
+                <br />
+                
+                <input type="submit" name="submit_handwerker" id="submit_handwerker" value="<%= addOrMod%>" />
+                <input type="reset" name="reset_handwerker" id="reset_handwerker" value="zur&uuml;cksetzen" />
+            </div>
+        </form>
+        <%
         }
         %>
         

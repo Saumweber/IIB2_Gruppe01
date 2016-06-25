@@ -57,10 +57,8 @@
         
         <h1>Einsehen</h1>
         <ul>
-            <%-- <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n)</a></li> --%>
+            <li><a href="./seeEntity.jsp?entity=nutzer" title="Nutzer einsehen">Alle Nutzer</a></li>
         </ul>
-        
-        <p>Das Dashboard muss für den Bauplaner noch angepasst werden.</p>
         <% 
             }  
         %>

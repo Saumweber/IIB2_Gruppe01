@@ -4,8 +4,6 @@
     Author     : Florian
 --%>
 
-<!-- TODO! >
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String type = "";
@@ -48,7 +46,34 @@
     }
     
     //TODO Handwerker anlegen
-    
+    if (comparingString.equals("handwerker")) {
+        bean.Nutzer element = new bean.Nutzer();
+        element.setNtzEmail(request.getParameter("email"));
+        element.setNtzPasswort(request.getParameter("passwort"));
+        element.setNtzName(request.getParameter("name"));
+        element.setNtzVorname(request.getParameter("vorname"));
+        
+        bean.Beruf brf = new bean.Beruf();
+        try {
+        Integer i = new Integer(request.getParameter("beruf"));
+        brf.setBrfId(i);
+        }
+        catch (NumberFormatException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        
+        beanDao.BerufDao brfDao = new beanDao.BerufDao();
+        brf = brfDao.selectById(brf).get(0);
+        element.setBeruf(brf);
+        
+        int result = -1;
+        beanDao.NutzerDao ntzDao = new beanDao.NutzerDao();
+        result = ntzDao.insert(element);
+        session.setAttribute("return", result);
+        
+        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        response.setHeader("Location", "./modifyEntity.jsp?entity=handwerker&type=add&id=" + element.getNtzEmail());
+    }
     //TODO Sanierungsauftrag anlegen
     
     
