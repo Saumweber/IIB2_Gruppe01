@@ -23,6 +23,7 @@
 
     if (!request.getParameter("entity").isEmpty()) {
         addOrMod = "einf&uuml;gen";
+        addedOrModedOrDeleted = "eingef&uuml;gt";
         String tmp = request.getParameter("entity");
         title = title + " - " + tmp.substring(0, 1).toUpperCase() + tmp.substring(1);
     }

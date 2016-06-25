@@ -45,7 +45,6 @@
         response.setHeader("Location", "./modifyEntity.jsp?entity=eigeneAuftraege&id=" + element.getSnrId());
     }
     
-    //TODO Handwerker anlegen
     if (comparingString.equals("handwerker")) {
         bean.Nutzer element = new bean.Nutzer();
         element.setNtzEmail(request.getParameter("email"));

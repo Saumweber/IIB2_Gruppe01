@@ -155,6 +155,7 @@ public class SanierungsauftragDao extends DbConnection{
             preparedStatement.setString(3, _bean.getSnrGebaeude());
             preparedStatement.setString(4, _bean.getSnrStatus());
             preparedStatement.setString(5, _bean.getSnrBeschreibung());
+            preparedStatement.setInt(6, _bean.getSnrId());
             resultSet = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());
