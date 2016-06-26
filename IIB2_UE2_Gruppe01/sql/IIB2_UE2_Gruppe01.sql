@@ -124,10 +124,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `IIB2_UE2_Gruppe01`;
-INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (1, NULL, NULL, 'eingegangen', 'Alte Tapete entfernen und neu tapezieren.');
-INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (2, NULL, NULL, 'erledigt', 'Weiß streichen.');
-INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (3, NULL, NULL, 'handwerker_beauftragt', 'Waschbecken austauschen.');
-INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (4, NULL, NULL, 'handwerker_beauftragt', 'Rohre verlegen.');
+INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (1, NULL, 'Wohnhaus', 'eingegangen', 'Alte Tapete entfernen und neu tapezieren.');
+INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (2, NULL, 'Wohnhaus', 'erledigt', 'Weiß streichen.');
+INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (3, NULL, 'Wohnhaus', 'handwerker_beauftragt', 'Waschbecken austauschen.');
+INSERT INTO `IIB2_UE2_Gruppe01`.`Sanierungsauftrag` (`snr_id`, `snr_ifcpfad`, `snr_gebaeude`, `snr_status`, `snr_beschreibung`) VALUES (4, NULL, 'Fabrik', 'handwerker_beauftragt', 'Rohre verlegen.');
 
 COMMIT;
 

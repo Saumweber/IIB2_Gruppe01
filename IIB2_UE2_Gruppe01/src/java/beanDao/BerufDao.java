@@ -40,7 +40,30 @@ public class BerufDao extends DbConnection {
         }
         return returnList;
     }
-        
+    
+    public List<Beruf> selectWithoutBauplaner() {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Beruf> returnList = new ArrayList<Beruf>();
+        String statement = "select * from beruf where brf_berufname <> 'Bauplaner';";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Beruf beruf = new Beruf();
+                beruf.setBrfId(resultSet.getInt("brf_id"));
+                beruf.setBrfBerufname(resultSet.getString("brf_berufname"));
+                beruf.setBrfSpezialisierung(resultSet.getString("brf_spezialisierung"));
+                returnList.add(beruf);
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return returnList;
+    }
+    
     public List<Beruf> selectById(Beruf _bean) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -50,6 +73,31 @@ public class BerufDao extends DbConnection {
         try {
             preparedStatement = this.connection.prepareStatement(statement);
             preparedStatement.setInt(1, _bean.getBrfId());
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Beruf beruf = new Beruf();
+                beruf.setBrfId(resultSet.getInt("brf_id"));
+                beruf.setBrfBerufname(resultSet.getString("brf_berufname"));
+                beruf.setBrfSpezialisierung(resultSet.getString("brf_spezialisierung"));
+                returnList.add(beruf);
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        return returnList;
+    }
+    
+    public List<Beruf> selectByBerufname(Beruf _bean) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Beruf> returnList = new ArrayList<Beruf>();
+        String statement = "select * from beruf where brf_berufname = ? and brf_spezialisierung = ?;";
+
+        try {
+            preparedStatement = this.connection.prepareStatement(statement);
+            preparedStatement.setString(1, _bean.getBrfBerufname());
+            preparedStatement.setString(2, _bean.getBrfSpezialisierung());
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

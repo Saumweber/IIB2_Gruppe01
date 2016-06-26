@@ -4,6 +4,7 @@
     Author     : Florian
 --%>
 
+<%@page import="beanDao.BerufDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String addOrMod = "";
@@ -14,14 +15,16 @@
         addOrMod = "einf&uuml;gen";
         addedOrModedOrDeleted = "eingef&uuml;gt";
         title = title + " - Anlegen";
-    } else if (request.getParameter("type").toLowerCase().equals("delete")) {
+    } else if (request.getParameter("type") != null && request.getParameter("type").toLowerCase().equals("delete")) {
         addOrMod = "l&ouml;schen";
         addedOrModedOrDeleted = "gel&ouml;scht";
         title = title + " - L&ouml;schen";
     }
 
     if (!request.getParameter("entity").isEmpty()) {
-        String tmp = request.getParameter("entity").toLowerCase();
+        addOrMod = "einf&uuml;gen";
+        addedOrModedOrDeleted = "eingef&uuml;gt";
+        String tmp = request.getParameter("entity");
         title = title + " - " + tmp.substring(0, 1).toUpperCase() + tmp.substring(1);
     }
 %>
@@ -40,6 +43,120 @@
             }
         %>
         <h1><% out.print(title); %></h1>
+        <%
+            if (session.getAttribute("return") != null) {
+                String entity = request.getParameter("entity");
+                entity = entity.substring(0, 1).toUpperCase() + entity.substring(1);
+                int returnSet = Integer.parseInt(session.getAttribute("return").toString());
+                session.removeAttribute("return");
+                if (returnSet > 0) {
+                    out.print(entity + " wurde erfolgreich " + addedOrModedOrDeleted + ".");
+                } else {
+                    out.print("Es trat ein Fehler auf. " + entity + " wurde nicht " + addedOrModedOrDeleted + ".");
+                }
+            }
+
+            String comparingString = request.getParameter("entity") != null ? request.getParameter("entity") : "";
+            String id = request.getParameter("id") != null ? request.getParameter("id").toString() : "0";
+            boolean founded = false;
+        %>
+        
+        <%
+            if (comparingString.equals("eigeneAuftraege")) {
+                bean.Sanierungsauftrag element = new bean.Sanierungsauftrag();
+                element.setSnrId(Integer.parseInt(id));
+                beanDao.SanierungsauftragDao elementDao = new beanDao.SanierungsauftragDao();
+                if (elementDao.selectById(element).size() > 0) {
+                    element = elementDao.selectById(element).get(0);
+                    founded = true;
+                } else if (request.getParameter("type") != null
+                        && !request.getParameter("type").equals("add")
+                        && !request.getParameter("type").equals("delete")) {
+                    out.println("<p>Die zu bearbeitende Sanierungsauftrag konnte nicht gefunden werden.</p>");
+                }
+        %>
+        <form action="./processEntity.jsp?entity=eigeneAuftraege" name="from_eigeneAuftraege" method="post">
+            <div>
+                <label for="ifcpfad">IFC-Pfad: <%out.print(element.getSnrIfcpfad());%> </label>
+                <%--<input type="text" name="ifcpfad" id="ifcpfad" value="<% if (founded) {
+                        out.print(element.getSnrIfcpfad());
+                    } %>" required="required" placeholder="IFC-Pfad" /> --%>
+                <br />
+                <label for="gebaeude">Gebäude: <%out.print(element.getSnrGebaeude());%> </label>
+                <%-- <input type="text" name="gebaeude" id="gebaeude" value="<% if (founded) {
+                        out.print(element.getSnrGebaeude());
+                    } %>" required="required" placeholder="Gebäude" /> --%>
+                <br />
+                <label for="status">Status: </label>
+                <input type="text" name="status" id="status" value="<% if (founded) {
+                        out.print(element.getSnrStatus());
+                    } %>" required="required" placeholder="Status" />
+                <br />
+                <label for="beschreibung">Beschreibung: <%out.print(element.getSnrBeschreibung());%> </label>
+                <%-- <input type="text" name="beschreibung" id="beschreibung" value="<% if (founded) {
+                        out.print(element.getSnrBeschreibung());
+                    } %>" required="required" placeholder="Beschreibung" /> --%>
+                <br />
+                <input type="submit" name="submit_sanierungsauftrag" id="submit_sanierungsauftrag" value="<%= addOrMod%>" />
+                <input type="reset" name="reset_sanierungsauftrag" id="reset_status" value="zur&uuml;cksetzen" />
+            </div>
+        </form>
+        <%
+            if (founded) {
+                session.setAttribute("modifyId", element.getSnrId());
+            }
+        } else if (comparingString.equals("handwerker")) {
+                bean.Nutzer element = new bean.Nutzer();               
+        %>
+        <form action="./processEntity.jsp?entity=handwerker" name="form_handwerker" method="post">
+            <div>
+                <label for="email">E-Mail: </label>
+                <input type="text" name="email" id="email" value="" required="required" placeholder="E-Mail" />
+                <br />
+                <label for="passwort">Passwort: </label>
+                <input type="text" name="passwort" id="passwort" value="" required="required" placeholder="Passwort" />
+                <br />
+                <label for="name">Nachname: </label>
+                <input type="text" name="name" id="name" value="" required="required" placeholder="Nachname" />
+                <br />
+                <label for="vorname">Vorname: </label>
+                <input type="text" name="vorname" id="vorname" value="" required="required" placeholder="Vorname" />
+                <br />
+                
+                <label for="beruf">Beruf: </label>
+                <select name="beruf" id="beruf" value="" required="required">
+                    <%
+                    int i = 0;
+                    bean.Beruf brf = new bean.Beruf();
+                    java.util.List<bean.Beruf> liste = new beanDao.BerufDao().selectWithoutBauplaner();
+                    
+                    for (bean.Beruf tmp : liste) {
+                    %>   
+                    <option value="<%= tmp.getBrfId()%>"    
+                    <%    
+                        
+                        out.println("<tr>"
+                                //+ "<td>" + ++i + "</td>"
+                                + "<td>" + tmp.getBrfId()+" - "+ "</td>"
+                                + "<td>" + tmp.getBrfBerufname()+" - "+ "</td>"
+                                + "<td>" + tmp.getBrfSpezialisierung()+ "</td>"
+                                + "</tr>");
+                    }
+                    %>
+                    </option>
+                </select>
+                <br />
+                
+                <input type="submit" name="submit_handwerker" id="submit_handwerker" value="<%= addOrMod%>" />
+                <input type="reset" name="reset_handwerker" id="reset_handwerker" value="zur&uuml;cksetzen" />
+            </div>
+        </form>
+        <%
+        }
+        %>
+        
+        
+        <%--
         <%
             if (session.getAttribute("return") != null) {
                 String entity = request.getParameter("entity");
@@ -314,5 +431,7 @@
         <%
             }
         %>
+        
+        --%>
     </body>
 </html>

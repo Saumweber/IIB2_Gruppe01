@@ -33,28 +33,18 @@
         <% 
             if(session.getAttribute("nutzerArt") == "Handwerker"){
         %>     
-           
-        <h1>Anlegen</h1>
-        <ul>
-            <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
-        </ul>
-        
+                  
         <h1>Einsehen</h1>
         <ul>
-            <li><a href="./seeEntity.jsp?entity=eigeneAuftaege" title="eigene Aufträge einsehen">Eigene Aufträge</a></li>
-            <li><a href="./seeEntity.jsp?entity=gebaeudeAuftaege" title="Aufträge pro Gebäude einsehen">Gebäudeaufträge</a></li>
             
-            <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n</a></li>     
-        </ul> 
-        <p>Das Dashboard muss für den Handwerker noch angepasst werden.</p>
+            <li><a href="./seeEntity.jsp?entity=eigeneAuftraege" title="eigene Aufträge einsehen">Eigene Aufträge</a></li>
+            <li><a href="./searchGebaeude.jsp" title="Aufträge pro Gebäude einsehen">Aufträge eines Gebäudes</a></li>
                 
-        <%       
+        </ul> 
+                
+        <%   
             } 
         %>
-        
-        
-        
-        
         
         <% 
             if(session.getAttribute("nutzerArt") == "Bauplaner"){
@@ -62,48 +52,16 @@
         
         <h1>Anlegen</h1>
         <ul>
-            <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
+            <li><a href="./newEntity.jsp?entity=handwerker" title="Handwerker anlegen">Handwerker</a></li>
         </ul>
         
         <h1>Einsehen</h1>
         <ul>
-            <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n)</a></li>
+            <li><a href="./seeEntity.jsp?entity=nutzer" title="Nutzer einsehen">Alle Nutzer</a></li>
         </ul>
-        
-        <p>Das Dashboard muss für den Bauplaner noch angepasst werden.</p>
         <% 
             }  
         %>
         
-        <%--
-        <h1>Anlegen</h1>
-        <ul>
-            <li><a href="./newEntity.jsp?entity=adresse" title="Adresse anlegen">Adresse</a></li>
-            <li><a href="./newEntity.jsp?entity=eigentuemer" title="Eigent&uuml;mer anlegen">Eigent&uuml;mer</a></li>
-            <li><a href="./newEntity.jsp?entity=beruf" title="Beruf anlegen">Beruf</a></li>
-            <li><a href="./newEntity.jsp?entity=handwerker" title="Handwerker anlegen">Handwerker</a></li>
-            <li><a href="./newEntity.jsp?entity=gutachter" title="Gutachter anlegen">Gutachter</a></li>
-            <li><a href="./newEntity.jsp?entity=schaden" title="Schaden anlegen">Schaden</a></li>
-            <li><a href="./newEntity.jsp?entity=gebaeude" title="Geb&auml;ubde anlegen">Geb&auml;ude</a></li>
-            <li><a href="./newEntity.jsp?entity=schadenslage" title="Schadenslage anlegen">Schadenslage</a></li>
-            <li><a href="./newEntity.jsp?entity=multimedia" title="Multimedia anlegen">Multimedia</a></li>
-            <li><a href="./newEntity.jsp?entity=schadensart" title="Schadensart anlegen">Schadensart</a></li>
-            <li><a href="./newEntity.jsp?entity=auftrag" title="Auftrag anlegen">Auftrag</a></li>
-        </ul>
-        <h1>Einsehen</h1>
-        <ul>
-            <li><a href="./seeEntity.jsp?entity=adresse" title="Adresse(n) einsehen">Adresse(n)</a></li>
-            <li><a href="./seeEntity.jsp?entity=eigentuemer" title="Eigent&uuml;mer einsehen">Eigent&uuml;mer</a></li>
-            <li><a href="./seeEntity.jsp?entity=beruf" title="Beruf(e) einsehen">Beruf(e)</a></li>
-            <li><a href="./seeEntity.jsp?entity=handwerker" title="Handwerker einsehen">Handwerker</a></li>
-            <li><a href="./seeEntity.jsp?entity=gutachter" title="Gutachter einsehen">Gutachter</a></li>
-            <li><a href="./seeEntity.jsp?entity=schaden" title="Schaden/ Schäden einsehen">Schaden/ Sch&auml;den</a></li>
-            <li><a href="./seeEntity.jsp?entity=gebaeude" title="Geb&auml;bde einsehen">Geb&auml;de</a></li>
-            <li><a href="./seeEntity.jsp?entity=schadenslage" title="Schadenslage(n) einsehen">Schadenslage(n)</a></li>
-            <li><a href="./seeEntity.jsp?entity=multimedia" title="Multimedia einsehen">Multimedia</a></li>
-            <li><a href="./seeEntity.jsp?entity=schadensart" title="Schadensart(en) einsehen">Schadensart(en)</a></li>
-            <li><a href="./seeEntity.jsp?entity=auftrag" title="Auftrag/ Auftr&auml;ge einsehen">Auftrag/ Auftr&auml;ge</a></li>
-        </ul>
-        --%>
     </body>
 </html>
