@@ -2,6 +2,7 @@
 import ifc2x3javatoolbox.ifc2x3tc1.IfcBuildingElement;
 import ifc2x3javatoolbox.ifc2x3tc1.IfcComplexProperty;
 import ifc2x3javatoolbox.ifc2x3tc1.IfcDoor;
+import ifc2x3javatoolbox.ifc2x3tc1.IfcElement;
 import ifc2x3javatoolbox.ifc2x3tc1.IfcGloballyUniqueId;
 import ifc2x3javatoolbox.ifc2x3tc1.IfcIdentifier;
 import ifc2x3javatoolbox.ifc2x3tc1.IfcLabel;
@@ -38,10 +39,6 @@ public class ManipulateIfcFile {
     String ifcFilename = "";
     File ifcFile = null;
     IfcModel ifcModel = new IfcModel();
-    //Collection ifcElements = null;
-    //IfcBuildingElement ifcElement = null;
-    //IfcPropertySingleValue ifcPropertySingleValue = null;
-    //IfcComplexProperty ifcComplexProperty = null;
 
     public ManipulateIfcFile(String path, String filename) {
         this.ifcModel = new IfcModel();
@@ -91,11 +88,13 @@ public class ManipulateIfcFile {
         return this.saveFile();
     }
 
-    public Collection getElements(String typ) {
-        switch (typ.toLowerCase()) {
+    public Collection getElements(String typInSingular) {
+        switch (typInSingular.toLowerCase()) {
             case "door":
+            case "tuer":
                 return this.getElements(0);
             case "window":
+            case "fenster":
                 return this.getElements(1);
         }
         return null;
@@ -171,20 +170,37 @@ public class ManipulateIfcFile {
         return null;
     }
 
-    public IfcPropertySingleValue createIfcPropertySingleValue(String name, String descriptionShort, String descriptionLong) {
+    public IfcPropertySingleValue createIfcPropertySingleValue(String name, String descriptionKey, String descriptionValue) {
         return new IfcPropertySingleValue(
                 new IfcIdentifier(name, false),
-                new IfcText(descriptionLong, false),
-                new IfcText(descriptionShort, false),
+                new IfcText(descriptionValue, false),
+                new IfcText(descriptionKey, false),
                 null);
     }
 
-    public IfcComplexProperty createIfcComplexProperty(String name, String descriptionShort, String descriptionLong) {
+    public IfcComplexProperty createIfcComplexProperty(String name, String descriptionKey, String descriptionValue) {
         return new IfcComplexProperty(
                 new IfcIdentifier(name, false),
-                new IfcText(descriptionLong, false),
-                new IfcIdentifier(descriptionShort, false),
+                new IfcText(descriptionValue, false),
+                new IfcIdentifier(descriptionKey, false),
                 new SET<>());
+    }
+
+    public IfcPropertySet addIfcPropertySingleValue(ArrayList<IfcPropertySingleValue> properties, IfcPropertySet destinationProperty) {
+        for (IfcPropertySingleValue property : properties) {
+            this.ifcModel.addIfcObject(property);
+            destinationProperty.addHasProperties(property);
+        }
+        return destinationProperty;
+    }
+
+    public IfcComplexProperty addIfcComplexProperty(ArrayList<IfcPropertySingleValue> properties, IfcComplexProperty destinationProperty, IfcPropertySet parentProperty) {
+        for (IfcPropertySingleValue property : properties) {
+            destinationProperty.addHasProperties(property);
+        }
+        this.addPropertyToIfcModel(destinationProperty);
+        parentProperty.addHasProperties(destinationProperty);
+        return destinationProperty;
     }
 
     private void addPropertyToIfcModel(IfcProperty property) {
@@ -198,24 +214,39 @@ public class ManipulateIfcFile {
             this.ifcModel.addIfcObject(property);
         }
     }
-    public void addIfcPropertySingleValue(ArrayList<IfcPropertySingleValue> properties) {
-        IfcPropertySet propertySet = null;
-        for(IfcPropertySingleValue property : properties) {
-            propertySet.addHasProperties(property);
+
+    public static void deletePropertySet(IfcModel model, IfcElement ifcElement, String propertySetName) {
+        if (ifcElement.getIsDefinedBy_Inverse() != null) {
+            for (IfcRelDefines ifcRelDefines : ifcElement.getIsDefinedBy_Inverse()) {
+                if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+                    IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
+                    IfcPropertySetDefinition ifcPropertySetDefinition = (IfcPropertySetDefinition) ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+                    if (ifcPropertySetDefinition instanceof IfcPropertySet) {
+                        IfcPropertySet ifcPropertySet = (IfcPropertySet) ifcPropertySetDefinition;
+                        if (ifcPropertySet.getName().toString().equals(propertySetName)) {
+                            for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
+                                deleteProperty(model, ifcProperty);
+                            }
+                            ifcRelDefinesByProperties.removeRelatedObjects((IfcObject) ifcElement);
+                            model.removeIfcObject(ifcRelDefinesByProperties);
+                            model.removeIfcObject(ifcPropertySetDefinition);
+                            break;
+                        }
+                    }
+                }
+            }
         }
-        this.ifcModel.addIfcObject(propertySet);
-        
     }
-        public void addIfcComplexProperty(ArrayList<IfcPropertySingleValue> properties) {
-        IfcComplexProperty propertySet = null;
-        for(IfcPropertySingleValue property : properties) {
-            propertySet.addHasProperties(property);
+
+    public static void deleteProperty(IfcModel model, IfcProperty ifcProperty) {
+        if (ifcProperty instanceof IfcComplexProperty) {
+            IfcComplexProperty complexProperty = (IfcComplexProperty) ifcProperty;
+            for (IfcProperty p : complexProperty.getHasProperties()) {
+                deleteProperty(model, p);
+            }
+            model.removeIfcObject(ifcProperty);
+        } else {
+            model.removeIfcObject(ifcProperty);
         }
-        this.addPropertyToIfcModel(propertySet);
     }
-        
-        //deletePropertySet(IfcModel model, IfcElement element, String name) {
-        //    
-        //}
-    
 }
