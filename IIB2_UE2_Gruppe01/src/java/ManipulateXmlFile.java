@@ -86,7 +86,7 @@ public class ManipulateXmlFile {
                 auftrag = (Auftrag) instanceObject;
                 auftragNew = factory.createAuftrag();
                 auftragNew.setBeschreibung(auftrag.getBeschreibung());
-                auftragNew.setGebaeude(auftrag.getGebaeude());
+                auftragNew.setGloballyUniqueId(auftrag.getGloballyUniqueId());
                 auftragNew.setId(auftrag.getId());
                 auftragNew.setStatus(auftrag.getStatus());
                 dir = xmlPath;

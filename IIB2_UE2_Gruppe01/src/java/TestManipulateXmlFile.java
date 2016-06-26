@@ -23,7 +23,7 @@ public class TestManipulateXmlFile {
                 System.out.println("Id: " + auftrag.getId());
                 System.out.println("Beschreibung: " + auftrag.getBeschreibung());
                 System.out.println("Status: " + auftrag.getStatus());
-                System.out.println("Gebäude: " + auftrag.getGebaeude());
+                System.out.println("GloballyUniqueId: " + auftrag.getGloballyUniqueId());
 
                 System.out.println("\nneues XML-File anlegen --> Id muss anders sein");
         auftrag.setBeschreibung(auftrag.getBeschreibung() + "\n" + auftrag.getBeschreibung());
